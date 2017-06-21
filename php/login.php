@@ -3,4 +3,9 @@
  * Hier werden wir das Login-Script schreiben.
  * */
 
-$testausgabe = 'Hallo Welt!';
+$test='und Peter';
+$testausgabe = 'Hallo Welt! '.$test;
+
+function buchen(){
+
+}

@@ -21,6 +21,10 @@ echo "$testausgabe";
 <script>
     $(document).ready(function () {
 
+        $("input").click(function(){
+            $(this).fadeOut(1200);
+            $(this).fadeIn(1500);
+        });
 
     })
 </script>
