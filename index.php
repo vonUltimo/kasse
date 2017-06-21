@@ -1,3 +1,8 @@
+<?php
+
+// Hier kommt der PHP-Code rein :-)
+
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
