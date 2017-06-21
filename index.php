@@ -1,4 +1,6 @@
 <?php
+include 'php/login.php';
+include 'php/protected.php';
 
 // Hier kommt der PHP-Code rein :-)
 
@@ -11,6 +13,10 @@
     <link rel="stylesheet" href="css/skeleton.css">
 </head>
 <body>
+<?php
+echo "$testausgabe";
+?>
+
 <div class="container">
     <h3 class="title">Herzlich willkommen!</h3>
     <form>
