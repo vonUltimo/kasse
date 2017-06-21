@@ -11,14 +11,23 @@ include 'php/protected.php';
     <meta charset="UTF-8">
     <title>Kasse</title>
     <link rel="stylesheet" href="css/skeleton.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
 <?php
 echo "$testausgabe";
 ?>
+<script>
+    $(document).ready(function () {
+
+
+    })
+</script>
 
 <div class="container">
     <h3 class="title">Herzlich willkommen!</h3>
+    <h7 class="">Bitte melden Sie sich an:</h7>
     <form>
         <div class="row">
             <div class="six columns">
