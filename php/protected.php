@@ -1,5 +1,7 @@
 <?php
 /**
-Hier kommt der pw geschützte Bereich hin.
- */
+ * Hier werden wir den geschützten Bereich erstellen.
+ * @author Sven Haberzettl <von.ultimo@gmail.com>
+ * @license http://www.opensource.org/licenses/mit-license.html MIT License
+ * */
 
