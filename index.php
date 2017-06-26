@@ -49,11 +49,15 @@ include 'php/protected.php';
         </label>
         <input class="button-primary" type="button" value="Senden">
     </form>-->
-    <table class="offset-by-one">
+    <p class="offset-by-one">
 
+        <?php
+        include "php/db_abfragen.php";
+        $sql = "SELECT * FROM users";
+        echo $sql;
+        ?>
 
-
-    </table>
+    </p>
 </div>
 </body>
 </html>
