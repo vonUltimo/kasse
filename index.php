@@ -15,10 +15,7 @@ include 'php/protected.php';
     <script src="js/main.js"></script>
 </head>
 <body>
-<?php echo "$hashwert"; ?><br/>
-<?php echo "$hashwert"; ?><br/>
-<?php echo "$hashwert"; ?><br/>
-<?php echo "$hashwert"; ?><br/>
+
 
 <script>
     $(document).ready(function () {
@@ -34,7 +31,7 @@ include 'php/protected.php';
 
 <div class="container">
     <h3 class="title">Herzlich willkommen!</h3>
-    <h4 class="">Bitte melden Sie sich an:</h4>
+<!--    <h4 class="">Bitte melden Sie sich an:</h4>
     <form>
         <div class="row">
             <div class="six columns">
@@ -51,23 +48,11 @@ include 'php/protected.php';
             <span class="label-body">Möchtest du eingeloggt bleiben?</span>
         </label>
         <input class="button-primary" type="button" value="Senden">
-    </form>
+    </form>-->
     <table class="offset-by-one">
-        <tr>
-            <th>Datum der Buchung</th>
-            <th>Art der Buchung</th>
-            <th>gebuchter Betrag</th>
-        </tr>
-        <tr>
-            <td>14.2.2017</td>
-            <td>Einzahlung</td>
-            <td>120,00€</td>
-        </tr>
-        <tr>
-            <td>18.2.2017</td>
-            <td>Getränkeabrechnung vom 16.2.17</td>
-            <td>28,62€</td>
-        </tr>
+
+
+
     </table>
 </div>
 </body>
