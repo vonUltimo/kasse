@@ -1,13 +1,14 @@
 <?php
 $mysqli;
+
 function connect() {
     global $mysqli;
-    require 'config/info.php';
+    require 'config/config.php';
     if( isset( $mysqli ) ) {
         return;
     }
 
-    $mysqli = new mysqli("localhost", $user, $pwd, $db);
+    $mysqli = new mysqli("localhost", $db_user, $db_user_pw, $db);
 
     $mysqli->query("SET NAMES 'utf8'");
     if ($mysqli->connect_errno) {
@@ -19,6 +20,11 @@ function connect() {
 }
 
 function getUser(){
+    global $mysqli;
+    $sql = "SELECT * FROM user";
+    connect();
+    $erg=  $mysqli->query($sql);
+    print_r($erg);
 
 }
 

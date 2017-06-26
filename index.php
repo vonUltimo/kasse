@@ -53,8 +53,7 @@ include 'php/protected.php';
 
         <?php
         include "php/db_abfragen.php";
-        $sql = "SELECT * FROM users";
-        echo $sql;
+        getUser();
         ?>
 
     </p>
