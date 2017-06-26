@@ -1,8 +1,7 @@
 <?php
 include 'php/login.php';
 include 'php/protected.php';
-
-// Hier kommt der PHP-Code rein :-)
+include 'php/db_abfragen.php';
 
 ?>
 <!DOCTYPE html>
@@ -31,29 +30,28 @@ include 'php/protected.php';
 
 <div class="container">
     <h3 class="title">Herzlich willkommen!</h3>
-<!--    <h4 class="">Bitte melden Sie sich an:</h4>
-    <form>
-        <div class="row">
-            <div class="six columns">
-                <label for="EmailLogin">Deine E-Mail-Adresse</label>
-                <input class="u-full-width" type="email" placeholder="x@thuri.de" id="EmailLogin">
+    <!--    <h4 class="">Bitte melden Sie sich an:</h4>
+        <form>
+            <div class="row">
+                <div class="six columns">
+                    <label for="EmailLogin">Deine E-Mail-Adresse</label>
+                    <input class="u-full-width" type="email" placeholder="x@thuri.de" id="EmailLogin">
+                </div>
+                <div class="six columns">
+                    <label for="passwort">Dein Passwort</label>
+                    <input class="u-full-width" type="password" id="passwort">
+                </div>
             </div>
-            <div class="six columns">
-                <label for="passwort">Dein Passwort</label>
-                <input class="u-full-width" type="password" id="passwort">
-            </div>
-        </div>
-        <label class="eingeloggt_bleiben">
-            <input type="checkbox">
-            <span class="label-body">Möchtest du eingeloggt bleiben?</span>
-        </label>
-        <input class="button-primary" type="button" value="Senden">
-    </form>-->
+            <label class="eingeloggt_bleiben">
+                <input type="checkbox">
+                <span class="label-body">Möchtest du eingeloggt bleiben?</span>
+            </label>
+            <input class="button-primary" type="button" value="Senden">
+        </form>-->
     <p class="offset-by-one">
 
         <?php
-        include "php/db_abfragen.php";
-        getUser();
+        echo getUser();
         ?>
 
     </p>

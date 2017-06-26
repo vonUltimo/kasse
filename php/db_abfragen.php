@@ -1,29 +1,34 @@
 <?php
-$mysqli;
-function connect() {
-    global $mysqli;
-    require 'config/config.php';
-    if( isset( $mysqli ) ) {
-        return;
+$host = 'localhost';
+$uname = 'kasse_user';
+$pw = 'K4b5xBnPrFGM4TRZ';
+$db = 'Kasse';
+$test = 'ein Test';
+
+function connect()
+{
+    //require 'config/config.php';
+    $databaseobject = new mysqli('localhost', 'kasse_user', 'K4b5xBnPrFGM4TRZ', 'Kasse');
+    if ($databaseobject->connect_error) {
+        die("Verbindung zu Datenbank felhlgeschlagen: " . $databaseobject->connect_error);
     }
-    $mysqli = new mysqli("localhost", $db_user, $db_user_pw, $db);
-    $mysqli->query("SET NAMES 'utf8'");
-    if ($mysqli->connect_errno) {
-        echo "MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-        return null;
-    }
-    //echo $mysqli->host_info . "<br>\n";
-    return $mysqli;
+    return $databaseobject;
 }
-function getUser(){
-    global $mysqli;
-    $sql = "SELECT * FROM user";
-    connect();
-    $erg=  $mysqli->query($sql);
-    print_r($erg);
+
+
+function getUser()
+{
+    $db = connect();
+    $sql_abfrage = 'SELECT * FROM user;';
+    $result = $db->query($sql_abfrage);
 }
-function getBuchung(){
+
+function getBuchung()
+{
 }
-function getKontostand($user){
+
+function getKontostand($user)
+{
 }
+
 ?>
