@@ -51,7 +51,7 @@ include 'php/db_abfragen.php';
     <p class="offset-by-one">
 
         <?php
-        echo getUser();
+        getUser();
         ?>
 
     </p>
