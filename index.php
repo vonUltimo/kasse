@@ -1,9 +1,3 @@
-<?php
-include 'php/login.php';
-include 'php/protected.php';
-include 'php/db_abfragen.php';
-
-?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -11,7 +5,7 @@ include 'php/db_abfragen.php';
     <title>Kasse</title>
     <link rel="stylesheet" href="css/skeleton.css">
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/lib.js"></script>
 </head>
 <body>
 
@@ -51,6 +45,7 @@ include 'php/db_abfragen.php';
     <p class="offset-by-one">
 
         <?php
+        include 'php/db_abfragen.php';
         getUser();
         ?>
 
