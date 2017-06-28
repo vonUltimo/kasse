@@ -52,6 +52,7 @@ function getUserT()
         <th>Vorname</th>
         <th>Nachname</th>
         <th>E-Mail</th>  
+        <th>Kontostand</th>
         <th>Zinsbefreit</th>
     </tr>";
     if ($result->num_rows > 0) {
@@ -61,6 +62,7 @@ function getUserT()
                 "<td>".$row["vorname"] ."</td>".
                 "<td>".$row["nachname"] ."</td>".
                 "<td>".$row["email"] ."</td>".
+                "<td>".$row["kontostand"] ." €"."</td>".
                 "<td>".boolZuTest($row["zinsen"]) ."</td>".
                 "</tr>";
         }
@@ -87,9 +89,9 @@ function getBuchung()
 function getKontostand($user)
 {
     $database = connect();
-    $sql = 'SELECT kontostand FROM user WHERE id IS' . $user . ';';
+    $sql = "'SELECT kontostand FROM user WHERE id=' . $user . ';'";
     $result = $database->query($sql);
-    echo $result;
+    echo $result->fetch_all();
     $database->close();
 }
 

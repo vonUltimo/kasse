@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+    <?php
+    include "php/db_abfragen.php";
+    ?>
     <meta charset="UTF-8">
     <title>Kasse</title>
     <link rel="stylesheet" href="css/skeleton.css">
@@ -42,14 +45,16 @@
             </label>
             <input class="button-primary" type="button" value="Senden">
         </form>-->
-    <p class="offset-by-one">
-        <table>
+    <div class="offset-by-one">
         <?php
-        include "php/db_abfragen.php";
+        getKontostand(1);
+        ?>
+    <table>
+        <?php
         getUserT();
         ?>
     </table>
-    </p>
+    </div>
 </div>
 </body>
 </html>
