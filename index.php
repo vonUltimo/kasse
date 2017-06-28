@@ -43,12 +43,12 @@
             <input class="button-primary" type="button" value="Senden">
         </form>-->
     <p class="offset-by-one">
-
+        <table>
         <?php
-        include 'php/db_abfragen.php';
-        getUser();
+        include "php/db_abfragen.php";
+        getUserT();
         ?>
-
+    </table>
     </p>
 </div>
 </body>
