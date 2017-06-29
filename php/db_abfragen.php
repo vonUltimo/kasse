@@ -7,38 +7,23 @@
  * */
 
 
-function connect()
-{
-    if (isset($mysqli)) {
-        return;
-    }
-    $mysqli = new mysqli('127.0.0.1', 'kasse_user', 'K4b5xBnPrFGM4TRZ', 'Kasse');
-    if ($mysqli->connect_error) {
-        die("Verbindung zu Datenbank felhlgeschlagen: " . $mysqli->connect_error);
-    }
-    return $mysqli;
-}
+include "config/config.php";
 
 
-function getUser()
+function getUser($id)
     /*
-     * gibt alle Nutzer als Liste über echo aus.
+     * gibt den Nutzer mit der übergebenen id zurück.
+     * *** NICHT FERTIG ***
      */
 {
     $database = connect();
-    $sql = 'SELECT * FROM user;';
+    $sql = "SELECT * FROM user WHERE id=$id";
     $result = $database->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "id: " . $row["id"] . " - Name: " . $row["vorname"] . " " . $row["nachname"] . " - E-Mail:  " . $row["email"] . "<br>";
-        }
-    } else {
-        echo "Keine Inhalte";
-    }
     $database->close();
+    return $result;
 }
 
-function getUserT()
+function getUserTable()
     /**
      * gibt alle Nuter mit <td>Tags aus.
      */
@@ -57,13 +42,13 @@ function getUserT()
     </tr>";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<tr>".
-                "<td>".$row["id"] ."</td>".
-                "<td>".$row["vorname"] ."</td>".
-                "<td>".$row["nachname"] ."</td>".
-                "<td>".$row["email"] ."</td>".
-                "<td>".$row["kontostand"] ." €"."</td>".
-                "<td>".boolZuTest($row["zinsen"]) ."</td>".
+            echo "<tr>" .
+                "<td>" . $row["id"] . "</td>" .
+                "<td>" . $row["vorname"] . "</td>" .
+                "<td>" . $row["nachname"] . "</td>" .
+                "<td>" . $row["email"] . "</td>" .
+                "<td>" . $row["kontostand"] . " €" . "</td>" .
+                "<td>" . boolZuText($row["zinsen"]) . "</td>" .
                 "</tr>";
         }
     } else {
@@ -72,26 +57,22 @@ function getUserT()
     $database->close();
 }
 
-function boolZuTest($in)
-{
-    if ($in == 0) {
-        return "Nein";
-    } else {
-        return "Ja";
-    }
-}
-
 function getBuchung()
 {
 
 }
 
 function getKontostand($user)
+    /*
+      * gibt den Kontostand des Nutzers mit der übergebenen id zurück.
+     * *** NICHT FERTIG ***
+     */
 {
     $database = connect();
-    $sql = "'SELECT kontostand FROM user WHERE id=' . $user . ';'";
+    $sql = "SELECT kontostand FROM user WHERE id=$user;";
     $result = $database->query($sql);
-    echo $result->fetch_all();
+    $out = $result->fetch_assoc(); // wie kann ich diesen wert auslesen???
+    return $out;
     $database->close();
 }
 

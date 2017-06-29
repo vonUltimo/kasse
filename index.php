@@ -3,6 +3,7 @@
 <head>
     <?php
     include "php/db_abfragen.php";
+    include "php/db_eingaben.php";
     ?>
     <meta charset="UTF-8">
     <title>Kasse</title>
@@ -51,7 +52,7 @@
         ?>
     <table>
         <?php
-        getUserT();
+        getUserTable();
         ?>
     </table>
     </div>
