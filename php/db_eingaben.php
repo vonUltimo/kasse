@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * */
 
-include "config/config.php";
+//include "config/config.php";
 
 
 function addUser($vorname, $nachname, $email, $passwort)
@@ -15,7 +15,6 @@ function addUser($vorname, $nachname, $email, $passwort)
      *
      */
     $database = connect();
-
     $database->close();
 }
 

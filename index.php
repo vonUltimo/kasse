@@ -50,11 +50,11 @@
         <?php
         getKontostand(1);
         ?>
-    <table>
-        <?php
-        getUserTable();
-        ?>
-    </table>
+        <table>
+            <?php
+            getUserTable();
+            ?>
+        </table>
     </div>
 </div>
 </body>

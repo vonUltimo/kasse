@@ -72,8 +72,9 @@ function getKontostand($user)
     $sql = "SELECT kontostand FROM user WHERE id=$user;";
     $result = $database->query($sql);
     $out = $result->fetch_assoc(); // wie kann ich diesen wert auslesen???
-    return $out;
     $database->close();
+    echo "läuft";
+    return $out;
 }
 
 ?>
