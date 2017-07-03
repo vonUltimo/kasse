@@ -22,7 +22,7 @@ function boolZuText($in)
 {
     if ($in == 0) {
         return "Nein";
-    } else {
-        return "Ja";
     }
+    return "Ja";
+
 }

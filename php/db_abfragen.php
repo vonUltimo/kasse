@@ -6,22 +6,7 @@
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * */
 
-
 include "lib.php";
-
-
-function getUser($id)
-    /*
-     * gibt den Nutzer mit der übergebenen id zurück.
-     * *** NICHT FERTIG ***
-     */
-{
-    $database = connect();
-    $sql = "SELECT * FROM user WHERE id=$id";
-    $result = $database->query($sql);
-    $database->close();
-    return $result;
-}
 
 function getUserTable()
     /**
@@ -32,6 +17,7 @@ function getUserTable()
     $sql = 'SELECT * FROM user;';
     $result = $database->query($sql);
     echo "
+    <table>
     <tr>
         <th>id</th>
         <th>Vorname</th>
@@ -54,27 +40,64 @@ function getUserTable()
     } else {
         echo "Keine Inhalte";
     }
+    echo "</table>";
     $database->close();
 }
 
-function getBuchung()
+function getVerwendungszweck($zwecknummer)
+    /*
+       * gibt den Namen des Verwendungszweckes mit der übergebenen zwecknummer zurück.
+      */
 {
-
+    $database = connect();
+    $sql = "SELECT * FROM verwendungszweck WHERE zwecknummer=$zwecknummer;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["Beschreibung"];
+    $database->close();
+    return $out;
 }
 
 function getKontostand($user)
     /*
       * gibt den Kontostand des Nutzers mit der übergebenen id zurück.
-     * *** NICHT FERTIG ***
      */
 {
     $database = connect();
     $sql = "SELECT kontostand FROM user WHERE id=$user;";
     $result = $database->query($sql);
-    $out = $result->fetch_assoc(); // wie kann ich diesen wert auslesen???
+    $row = $result->fetch_assoc();
+    $out = $row["kontostand"];
     $database->close();
-    echo "läuft";
-    return $out;
+    return $out." €";
+}
+function getUserGroup($gid)
+    /*
+      * gibt die Grupper zu der übergebenen gid zurück.
+     */
+{
+    $database = connect();
+    $sql = "SELECT * FROM usergroup WHERE gid=$gid;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["gname"];
+    $database->close();
+    if ($out!= null){
+        return $out;
+    }
+    return "Diese Gruppe existiert nicht!";
 }
 
-?>
+function getUser($user)
+    /*
+      * gibt den Namen des Nutzers mit der übergebenen id zurück.
+     */
+{
+    $database = connect();
+    $sql = "SELECT * FROM user WHERE id=$user;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["vorname"]." ".$row["nachname"];
+    $database->close();
+    return $out;
+}

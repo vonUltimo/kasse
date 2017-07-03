@@ -28,34 +28,16 @@
 
 <div class="container">
     <h3 class="title">Herzlich willkommen!</h3>
-    <!--    <h4 class="">Bitte melden Sie sich an:</h4>
-        <form>
-            <div class="row">
-                <div class="six columns">
-                    <label for="EmailLogin">Deine E-Mail-Adresse</label>
-                    <input class="u-full-width" type="email" placeholder="x@thuri.de" id="EmailLogin">
-                </div>
-                <div class="six columns">
-                    <label for="passwort">Dein Passwort</label>
-                    <input class="u-full-width" type="password" id="passwort">
-                </div>
-            </div>
-            <label class="eingeloggt_bleiben">
-                <input type="checkbox">
-                <span class="label-body">Möchtest du eingeloggt bleiben?</span>
-            </label>
-            <input class="button-primary" type="button" value="Senden">
-        </form>-->
+
     <div class="offset-by-one">
-        <?php
-        getKontostand(1);
-        ?>
-        <table>
-            <?php
-            getUserTable();
-            ?>
-        </table>
+
+        <p>
+            Der Kontostand von <?php echo getUser(2); ?> beträgt: <?php echo getKontostand(2); ?>. Die letzte Buchung
+            war: <?php echo getVerwendungszweck(1); ?>
+            <br/>
+            Anmelden du dich musst!<br/>
+            <?php echo getUserGroup(64)?>
+        </p>
     </div>
-</div>
 </body>
 </html>
