@@ -7,7 +7,7 @@
  * */
 
 
-include "config/config.php";
+include "lib.php";
 
 
 function getUser($id)
