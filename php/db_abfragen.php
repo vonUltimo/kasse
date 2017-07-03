@@ -44,6 +44,43 @@ function getUserTable()
     $database->close();
 }
 
+function getBuchungVon($anzahl, $von)
+    /**
+     * gibt die $anzahl lentzten Buchungen mit <td>Tags aus.
+     * --- NICHT FERTIG ---
+     */
+{
+    $database = connect();
+    $sql = "SELECT * FROM (SELECT * FROM buchung ORDER BY buchungsnummer DESC LIMIT 0,$anzahl WHERE user_von=$von) ORDER BY buchungsnummer ASC;";
+    $result = $database->query($sql);
+    echo "
+    <table>
+    <tr>
+        <th>Buchungsnummer</th>
+        <th>Bebucht von</th>
+        <th>Gebucht an</th>
+        <th>Betrag</th>  
+        <th>Datum</th>
+        <th>Verwendungszweck</th>
+    </tr>";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>" .
+                "<td>" . $row["buchungsnummer"] . "</td>" .
+                "<td>" . getUser($row["user_von"]) . "</td>" .
+                "<td>" . getUser($row["user_zu"]) . "</td>" .
+                "<td>" . $row["betrag"] . "</td>" .
+                "<td>" . $row["datum"] . " €" . "</td>" .
+                "<td>" . getVerwendungszweck($row["zwecknummer"]) . "</td>" .
+                "</tr>";
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    echo "</table>";
+    $database->close();
+}
+
 function getVerwendungszweck($zwecknummer)
     /*
        * gibt den Namen des Verwendungszweckes mit der übergebenen zwecknummer zurück.

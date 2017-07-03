@@ -29,9 +29,10 @@ $usrgrp = 1;
     <div class="offset-by-one">
         <button class="button">getUserTable()</button>
         <button class="button">Button Button</button>
-        <button class="button - primary">button-primary</button>
+        <button class="button-primary">button-primary</button>
     </div>
     <div class="offset - by - one" id="ausgabe">
+
 
 
     </div>
@@ -41,7 +42,7 @@ $usrgrp = 1;
 
 switch ($usrgrp) {
     case (1):
-        echo "GODMODE";
+        echo getUserGroup($usrgrp);
         break;
     case (2):
         echo "Mitglied";

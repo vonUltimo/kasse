@@ -38,6 +38,7 @@
             Anmelden du dich musst!<br/>
             <?php echo getUserGroup(64)?>
         </p>
+        <?php getBuchungVon(5,1) ?>
     </div>
 </body>
 </html>
