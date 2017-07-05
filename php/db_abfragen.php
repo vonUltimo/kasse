@@ -8,6 +8,13 @@
 
 include "lib.php";
 
+function getEntrys(){
+    /*
+     * Gibt die Anzahl der Einträge für die übergebene Tabelle zurück
+     * __NICHT FERTIG__
+     */
+}
+
 function getUserTable()
     /**
      * gibt alle Nuter mit <td>Tags aus.

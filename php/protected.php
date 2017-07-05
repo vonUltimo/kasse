@@ -8,8 +8,8 @@ $user = 1;
 $usrgrp = 1;
 ?>
 
-    <!DOCTYPE html>
-    <html lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <?php
     include "db_abfragen.php";
@@ -24,32 +24,17 @@ $usrgrp = 1;
 
 <body>
 <div class="container">
-    <title></title>
+    <h2>-<?php echo getUserGroup($usrgrp); ?>-</h2>
 
     <div class="offset-by-one">
-        <button class="button">getUserTable()</button>
-        <button class="button">Button Button</button>
-        <button class="button-primary">button-primary</button>
+        <button class="button">Alle Nutzer anzeigen</button>
+        <button class="button">Einen Nutzer hinzufügen</button>
+        <button class="button-primary">E-Mail an alle schreiben</button>
+        <button class="button">NixName</button>
     </div>
     <div class="offset - by - one" id="ausgabe">
-
-
 
     </div>
 </div>
 </body>
-<?php
-
-switch ($usrgrp) {
-    case (1):
-        echo getUserGroup($usrgrp);
-        break;
-    case (2):
-        echo "Mitglied";
-        break;
-    default:
-        echo "Du bist kein registrierter Nutzer!";
-        break;
-}
-
-?>
+</html>
