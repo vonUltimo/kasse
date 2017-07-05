@@ -46,12 +46,11 @@ function getUserTable()
 
 function getBuchungVon($anzahl, $von)
     /**
-     * gibt die $anzahl lentzten Buchungen mit <td>Tags aus.
-     * --- NICHT FERTIG ---
+     * gibt die $anzahl lentzten Buchungen von $von mit <td>Tags aus.
      */
 {
     $database = connect();
-    $sql = "SELECT * FROM (SELECT * FROM buchung ORDER BY buchungsnummer DESC LIMIT 0,$anzahl WHERE user_von=$von) ORDER BY buchungsnummer ASC;";
+    $sql = "SELECT * FROM buchung WHERE user_von=$von ORDER BY datum DESC LIMIT $anzahl;";
     $result = $database->query($sql);
     echo "
     <table>
@@ -60,7 +59,7 @@ function getBuchungVon($anzahl, $von)
         <th>Bebucht von</th>
         <th>Gebucht an</th>
         <th>Betrag</th>  
-        <th>Datum</th>
+        <th>Gebucht am</th>
         <th>Verwendungszweck</th>
     </tr>";
     if ($result->num_rows > 0) {
@@ -69,8 +68,8 @@ function getBuchungVon($anzahl, $von)
                 "<td>" . $row["buchungsnummer"] . "</td>" .
                 "<td>" . getUser($row["user_von"]) . "</td>" .
                 "<td>" . getUser($row["user_zu"]) . "</td>" .
-                "<td>" . $row["betrag"] . "</td>" .
-                "<td>" . $row["datum"] . " €" . "</td>" .
+                "<td>" . $row["betrag"] . " €" . "</td>" .
+                "<td>" . $row["datum"] . "</td>" .
                 "<td>" . getVerwendungszweck($row["zwecknummer"]) . "</td>" .
                 "</tr>";
         }
@@ -106,8 +105,9 @@ function getKontostand($user)
     $row = $result->fetch_assoc();
     $out = $row["kontostand"];
     $database->close();
-    return $out." €";
+    return $out . " €";
 }
+
 function getUserGroup($gid)
     /*
       * gibt die Grupper zu der übergebenen gid zurück.
@@ -119,7 +119,7 @@ function getUserGroup($gid)
     $row = $result->fetch_assoc();
     $out = $row["gname"];
     $database->close();
-    if ($out!= null){
+    if ($out != null) {
         return $out;
     }
     return "Diese Gruppe existiert nicht!";
@@ -134,7 +134,10 @@ function getUser($user)
     $sql = "SELECT * FROM user WHERE id=$user;";
     $result = $database->query($sql);
     $row = $result->fetch_assoc();
-    $out = $row["vorname"]." ".$row["nachname"];
+    $out = $row["vorname"] . " " . $row["nachname"];
     $database->close();
-    return $out;
+    if ($out != " ") {
+        return $out;
+    }
+    return "Diesr Nutzer existiert nicht!";
 }

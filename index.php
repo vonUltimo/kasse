@@ -36,9 +36,9 @@
             war: <?php echo getVerwendungszweck(1); ?>
             <br/>
             Anmelden du dich musst!<br/>
-            <?php echo getUserGroup(64)?>
+            <?php echo getUserGroup(12)?>
         </p>
-        <?php getBuchungVon(5,1) ?>
+        <?php getBuchungVon(3,1) ?>
     </div>
 </body>
 </html>
