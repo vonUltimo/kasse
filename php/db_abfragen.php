@@ -6,13 +6,20 @@
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * */
 
-include "lib.php";
+include_once "lib.php";
 
-function getEntrys(){
+function getEntrys($table)
+{
     /*
      * Gibt die Anzahl der Einträge für die übergebene Tabelle zurück
-     * __NICHT FERTIG__
      */
+    $database = connect();
+    $sql = "SELECT COUNT(*) FROM $table";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["COUNT(*)"];
+    $database->close();
+    return $out;
 }
 
 function getUserTable()

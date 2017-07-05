@@ -32,13 +32,13 @@
     <div class="offset-by-one">
 
         <p>
-            Der Kontostand von <?php echo getUser(2); ?> beträgt: <?php echo getKontostand(2); ?>. Die letzte Buchung
-            war: <?php echo getVerwendungszweck(1); ?>
+            Der Kontostand von <?php echo getUser(2); ?> beträgt: <?php echo getKontostand(2); ?>.
             <br/>
             Anmelden du dich musst!<br/>
-            <?php echo getUserGroup(12)?>
+            <?php echo getUserGroup(12) ?>
         </p>
-        <?php getBuchungVon(3,1) ?>
+        <?php getBuchungVon(3, 1) ?>
+        <?php echo getEntrys("user") ?>
     </div>
 </body>
 </html>

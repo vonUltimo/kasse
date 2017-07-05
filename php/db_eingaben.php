@@ -6,11 +6,20 @@
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * */
 
-//include "lib.php";
-//include "db_abfragen.php";
+include_once "lib.php";
+include_once "db_abfragen.php";
 
 function addBuchung()
+    /*
+     *
+     * --NICHT FERTIG--
+     */
 {
+    $bnr = getEntrys("buchung") + 1;
+    $database = connect();
+    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, datum, betrag, user_von, user_nach) VALUES ($bnr, )";
+    $database->close();
+
 }
 
 function addVerwendungszweck($beschreibung)
@@ -19,11 +28,12 @@ function addVerwendungszweck($beschreibung)
      * --NICHT FRETIG--
      */
 {
-    $database=connect();
-    $sql="INSERT INTO `verwendungszweck` (`Beschreibung`, `zwecknummer`) VALUES ('$beschreibung', 'get');";
+    $database = connect();
+    $sql = "INSERT INTO `verwendungszweck` (`Beschreibung`, `zwecknummer`) VALUES ('$beschreibung', 'get');";
 }
 
-function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp){
+function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp)
+{
     /**
      * Fügt einen Nutzer mit den übergebenen Parametern in die Tabelle user ein.
      * --NICHT FERTIG--
