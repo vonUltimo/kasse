@@ -26,16 +26,17 @@ $usrgrp = 1;
 <div class="container">
     <h2>-<?php echo getUserGroup($usrgrp); ?>-</h2>
     <h4>Hallo <?php echo getUser($user) ?>! Dein Kontostand beträgt derzeit: <?php echo getKontostand($user) ?></h4>
-    <?php getBuchungVon(99,$user) ?>
+    <!-- <?php getBuchungVon(99, $user) ?> -->
 
     <div class="offset-by-one">
-        <button class="button">Alle Nutzer anzeigen</button>
-        <button class="button">Einen Nutzer hinzufügen</button>
-        <button class="button-primary">E-Mail an alle schreiben</button>
-        <button class="button">NixName</button>
+            <button class="button">Alle Nutzer anzeigen</button>
+            <button class="button">Einen Nutzer hinzufügen</button>
+            <button class="button-primary">E-Mail an alle schreiben</button>
+            <button class="button">NixName</button>
+        </form>
     </div>
     <div class="offset - by - one" id="ausgabe">
-        <?php addBuchung() ?>
+
 
     </div>
 </div>

@@ -155,3 +155,19 @@ function getUser($user)
     }
     return "Diesr Nutzer existiert nicht!";
 }
+
+function getEmail($verein)
+{
+    /*
+     * Gibt alle EMail-Adressen der Nutzer des Vereins $verein als kommagetrennten String zurück
+     */
+    $out = "";
+    $database = connect();
+    $sql = "SELECT email FROM user WHERE gruppe=$verein";
+    $result = $database->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        $out .= $row["email"] . ", ";
+    }
+    $database->close();
+    return $out;
+}

@@ -39,6 +39,9 @@
         </p>
         <?php getBuchungVon(3, 1) ?>
         <?php echo getEntrys("user") ?>
+        <?php echo addVerwendungszweck("test") ?>
+
+
     </div>
 </body>
 </html>

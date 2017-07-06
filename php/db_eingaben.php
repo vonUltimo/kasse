@@ -25,11 +25,13 @@ function addBuchung()
 function addVerwendungszweck($beschreibung)
     /*
      * Fügt einen neuen Eintrag mit der übergebenen Beschreibung in die Tabelle verwendungszweck ein.
-     * --NICHT FRETIG--
      */
 {
     $database = connect();
-    $sql = "INSERT INTO `verwendungszweck` (`Beschreibung`, `zwecknummer`) VALUES ('$beschreibung', 'get');";
+    $id=getEntrys('verwendungszweck')+1;
+    $sql = "INSERT INTO `verwendungszweck` (`Beschreibung`, `zwecknummer`) VALUES ('$beschreibung',$id);";
+    $database->query($sql);
+    $database->close();
 }
 
 function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp)
@@ -38,5 +40,7 @@ function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp)
      * Fügt einen Nutzer mit den übergebenen Parametern in die Tabelle user ein.
      * --NICHT FERTIG--
      */
+    $database = connect();
+    $id=getEntrys('user')+1;
 
 }
