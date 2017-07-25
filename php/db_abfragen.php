@@ -69,7 +69,6 @@ function getBuchungVon($anzahl, $von)
     echo "
     <table>
     <tr>
-        <th>Buchungsnummer</th>
         <th>Bebucht von</th>
         <th>Gebucht an</th>
         <th>Betrag</th>  
@@ -79,7 +78,6 @@ function getBuchungVon($anzahl, $von)
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             echo "<tr>" .
-                "<td>" . $row["buchungsnummer"] . "</td>" .
                 "<td>" . getUser($row["user_von"]) . "</td>" .
                 "<td>" . getUser($row["user_zu"]) . "</td>" .
                 "<td>" . $row["betrag"] . " €" . "</td>" .
