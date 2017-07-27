@@ -17,7 +17,7 @@ function addBuchung()
 {
     $bnr = getEntrys("buchung") + 1;
     $database = connect();
-    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, datum, betrag, user_von, user_nach) VALUES ($bnr, )";
+    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, datum, betrag, user_von, user_nach, log) VALUES ($bnr, )";
     $database->close();
 
 }

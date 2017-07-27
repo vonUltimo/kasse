@@ -4,6 +4,7 @@
     <?php
     include "php/db_abfragen.php";
     include "php/db_eingaben.php";
+    include "php/auswertungen.php";
     ?>
     <meta charset="UTF-8">
     <title>Kasse</title>
@@ -40,8 +41,6 @@
         <?php getBuchungVon(3, 1) ?>
         <?php echo getEntrys("user") ?>
         <?php echo addVerwendungszweck("test") ?>
-
-
     </div>
 </body>
 </html>
