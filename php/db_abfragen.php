@@ -40,6 +40,7 @@ function getUserTable()
         <th>E-Mail</th>  
         <th>Kontostand</th>
         <th>Zinsbefreit</th>
+        <th>Hausbewohner</th>
     </tr>";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -50,6 +51,7 @@ function getUserTable()
                 "<td>" . $row["email"] . "</td>" .
                 "<td>" . $row["kontostand"] . " €" . "</td>" .
                 "<td>" . boolZuText($row["zinsen"]) . "</td>" .
+                "<td>" . boolZuText($row["hausbewohner"]) . "</td>" .
                 "</tr>";
         }
     } else {
@@ -190,7 +192,7 @@ function getEmail($verein)
 function delBuchung($buchungsid, $usergroup)
 {
     /*
-     * -- NICHT FERTIG --
+     * Löscht den übergebenen Datensatz bzw. merkt diesen zur Löschung vor. (Je nach Nutzergruppe)
      */
     $database = connect();
     if ($usergroup == 2) {

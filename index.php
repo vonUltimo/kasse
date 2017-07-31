@@ -17,13 +17,12 @@
 
 <script>
     $(document).ready(function () {
-
-
-        $("input").click(function () {
-            $(this).fadeOut(1200);
-            $(this).fadeIn(1500);
-        });
-
+        var table = document.getElementsByTagName("tbody");
+        for (var i = 0, cell; cell = table.cells[i]; i++) {
+            if ($("td").text() <= 0) {
+                $("td").addClass("neg");
+            }
+        }
     })
 </script>
 
@@ -41,7 +40,7 @@
         <?php getBuchungVon(10, 1) ?>
         <?php echo getEntrys("user") ?>
         <?php echo addVerwendungszweck("test") ?>
-        <?php getRechnung(1)?>
+        <?php getUserTable()?>
     </div>
 </body>
 </html>

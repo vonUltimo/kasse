@@ -17,7 +17,8 @@ function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
 {
     $bnr = getEntrys("buchung") + 1;
     $database = connect();
-    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, betrag, user_von, user_nach, log, anmerkung) VALUES ($bnr, $zweck, $betrag, $von, $zu, $logid, $anmerkung)";
+    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, betrag, user_von, user_nach, log, anmerkung) 
+            VALUES ($bnr, $zweck, $betrag, $von, $zu, $logid, $anmerkung);";
     $database->close();
 
 }
@@ -34,32 +35,16 @@ function addVerwendungszweck($beschreibung)
     $database->close();
 }
 
-function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp)
+function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp, $hausbewohner)
 {
     /**
      * Fügt einen Nutzer mit den übergebenen Parametern in die Tabelle user ein.
-     * --NICHT FERTIG--
      */
     $database = connect();
     $id = getEntrys('user') + 1;
-
-}
-
-
-function delBuchung($urgrp, $buchungsid)
-{
-    /*
-     * -- NICHT FERTIG --
-     */
-
-    if ($urgrp = 2) {
-
-        return "Löschung wurde vorgemerkt";
-    } elseif($urgrp=1) {
-
-        return"Löschung wurde bestätigt";
-    }else{
-        return"Sie sind nicht berechtigt! Depp!";
-    }
+    $sql = "INSERT INTO user (id, vorname, nachname, email, kontostand, zinsen, passwort, verein, gruppe, hausbewohner) 
+            VALUES  ($id, $vorname, $nachname, $email, 0, 0, $passwort, $verein, $usrgrp, $hausbewohner);";
+    $database->query($sql);
+    $database->close();
 
 }
