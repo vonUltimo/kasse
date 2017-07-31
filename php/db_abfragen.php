@@ -1,6 +1,6 @@
 <?php
 /**
- * Hier werden sämtlichen Datenbankabfragen gescrieben.
+ * Hier werden sämtlichen Datenbankabfragen geschrieben.
  * @author Sven Haberzettl <von.ultimo@gmail.com>
  * @author Jan Nemeth <jan.nemeth@web.de>
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
@@ -25,7 +25,7 @@ function getEntrys($table)
 
 function getUserTable()
     /**
-     * gibt alle Nuter mit <td>Tags aus.
+     * gibt alle Nutzer mit <td>Tags aus.
      */
 {
     $database = connect();
@@ -61,7 +61,7 @@ function getUserTable()
 
 function getBuchungVon($anzahl, $von)
     /**
-     * gibt die $anzahl lentzten Buchungen von $von mit <td>Tags aus.
+     * gibt die $anzahl letzten Buchungen von $von mit <td>Tags aus.
      */
 {
     $database = connect();
@@ -125,7 +125,7 @@ function getKontostand($user)
 
 function getUserGroup($gid)
     /*
-      * gibt die Grupper zu der übergebenen gid zurück.
+      * gibt die Gruppe zu der übergebenen gid zurück.
      */
 {
     $database = connect();
@@ -168,7 +168,7 @@ function getUser($user)
     if ($out != " ") {
         return $out;
     }
-    return "Diesr Nutzer existiert nicht!";
+    return "Dieser Nutzer existiert nicht!";
 }
 
 function getEmail($verein)
@@ -187,3 +187,28 @@ function getEmail($verein)
     return $out;
 }
 
+function delBuchung($buchungsid, $usergroup)
+{
+    /*
+     * -- NICHT FERTIG --
+     */
+    $database = connect();
+    if ($usergroup == 2) {
+        $sql="UPDATE buchung SET zum_loeschen_vorgemerkt = '1' WHERE buchungsnummer=$buchungsid";
+        $database->query($sql);
+        $database -> close();
+        return "Der Datensatz Nr: $buchungsid wurde erfolgreich zum Löschen vorgemerkt.";
+
+    } elseif ($usergroup == 1) {
+        $copy="INSERT INTO geloescht SELECT * FROM buchung WHERE zum_loeschen_vorgemerkt = 1;"; //vorgemerkte in geloescht kopieren.
+        $database->query($copy);
+        $sql = "DELETE FROM buchung WHERE zum_loeschen_vorgemerkt = '1';"; //vorgemerkte in buchung löschen.
+        $database->query($sql);
+        $database -> close();
+        return "Der Datensatz Nr: $buchungsid wurde erfolgreich gelöscht.";
+
+    } else {
+        $database -> close();
+        return "Sie haben keine Berechtigung auf die Funktion zuzugreifen.";
+        }
+}
