@@ -9,7 +9,7 @@
 include_once "lib.php";
 include_once "db_abfragen.php";
 
-function addBuchung()
+function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
     /*
      *
      * --NICHT FERTIG--
@@ -17,7 +17,7 @@ function addBuchung()
 {
     $bnr = getEntrys("buchung") + 1;
     $database = connect();
-    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, datum, betrag, user_von, user_nach, log) VALUES ($bnr, )";
+    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, betrag, user_von, user_nach, log, anmerkung) VALUES ($bnr, $zweck, $betrag, $von, $zu, $logid, $anmerkung)";
     $database->close();
 
 }
@@ -28,7 +28,7 @@ function addVerwendungszweck($beschreibung)
      */
 {
     $database = connect();
-    $id=getEntrys('verwendungszweck')+1;
+    $id = getEntrys('verwendungszweck') + 1;
     $sql = "INSERT INTO `verwendungszweck` (`Beschreibung`, `zwecknummer`) VALUES ('$beschreibung',$id);";
     $database->query($sql);
     $database->close();
@@ -41,6 +41,25 @@ function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp)
      * --NICHT FERTIG--
      */
     $database = connect();
-    $id=getEntrys('user')+1;
+    $id = getEntrys('user') + 1;
+
+}
+
+
+function delBuchung($urgrp, $buchungsid)
+{
+    /*
+     * -- NICHT FERTIG --
+     */
+
+    if ($urgrp = 2) {
+
+        return "Löschung wurde vorgemerkt";
+    } elseif($urgrp=1) {
+
+        return"Löschung wurde bestätigt";
+    }else{
+        return"Sie sind nicht berechtigt! Depp!";
+    }
 
 }

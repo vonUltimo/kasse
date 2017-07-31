@@ -38,9 +38,10 @@
             Anmelden du dich musst!<br/>
             <?php echo getUserGroup(12) ?>
         </p>
-        <?php getBuchungVon(3, 1) ?>
+        <?php getBuchungVon(10, 1) ?>
         <?php echo getEntrys("user") ?>
         <?php echo addVerwendungszweck("test") ?>
+        <?php getRechnung(1)?>
     </div>
 </body>
 </html>

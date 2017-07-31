@@ -8,7 +8,7 @@
 
 include_once "lib.php";
 include_once "db_abfragen.php";
-require_once ("fpdf181/fpdf.php");
+require ("fpdf181/fpdf.php");
 
 function getRechnung($id){
     /**
@@ -17,9 +17,19 @@ function getRechnung($id){
      * NICHT FERTIG
      */
     //erster Test  --> läuft überhaupt nicht schön...
+    echo "newTab";
     $pdf=new FPDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial','B',16);
     $pdf->Cell(40,10,'Hallo Welt!');
     $pdf->Output("D");
+    echo "closeTab";
+}
+
+function getRechnungVerein($id){
+    /**
+     * Gibt eine vollständige Rechnung für den übergebenen Verein als PDF aus
+     *
+     * NICHT FERTIG
+     */
 }

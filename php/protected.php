@@ -4,8 +4,6 @@
  * @author Sven Haberzettl <von.ultimo@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * */
-$user = 1;
-$usrgrp = 1;
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,9 @@ $usrgrp = 1;
     <?php
     include "db_abfragen.php";
     include "db_eingaben.php";
+    $user = 1;
+    $usergrp = getUserGroupId($user);
+
     ?>
     <meta charset="UTF-8">
     <title>Kasse f&uumlr: <?php echo getUser($user) ?></title>
@@ -24,9 +25,8 @@ $usrgrp = 1;
 
 <body>
 <div class="container">
-    <h2>-<?php echo getUserGroup($usrgrp); ?>-</h2>
-    <h4>Hallo <?php echo getUser($user) ?>! Dein Kontostand beträgt derzeit: <?php echo getKontostand($user) ?></h4>
-    <!-- <?php getBuchungVon(99, $user) ?> -->
+    <h2>-<?php echo getUserGroup($usergrp); ?>-</h2>
+    <h4>Hallo <?php echo getUser($user) ?>!<br/> Dein Kontostand beträgt derzeit: <strong><?php echo getKontostand($user) ?></strong> </h4>
 
     <div class="offset-by-one">
             <button class="button">Alle Nutzer anzeigen</button>

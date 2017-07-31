@@ -12,6 +12,7 @@ function getEntrys($table)
 {
     /*
      * Gibt die Anzahl der Einträge für die übergebene Tabelle zurück
+     *
      */
     $database = connect();
     $sql = "SELECT COUNT(*) FROM $table";
@@ -74,6 +75,7 @@ function getBuchungVon($anzahl, $von)
         <th>Betrag</th>  
         <th>Gebucht am</th>
         <th>Verwendungszweck</th>
+        <th>Anmerkung</th>
     </tr>";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -83,6 +85,7 @@ function getBuchungVon($anzahl, $von)
                 "<td>" . $row["betrag"] . " €" . "</td>" .
                 "<td>" . $row["datum"] . "</td>" .
                 "<td>" . getVerwendungszweck($row["zwecknummer"]) . "</td>" .
+                "<td>" . $row["anmerkung"] . "</td>" .
                 "</tr>";
         }
     } else {
@@ -137,6 +140,20 @@ function getUserGroup($gid)
     return "Diese Gruppe existiert nicht!";
 }
 
+function getUserGroupId($id)
+    /*
+      * gibt die Gruppenummer zu der übergebenen gid zurück.
+     */
+{
+    $database = connect();
+    $sql = "SELECT * FROM user WHERE id=$id;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["gruppe"];
+    $database->close();
+    return $out;
+}
+
 function getUser($user)
     /*
       * gibt den Namen des Nutzers mit der übergebenen id zurück.
@@ -169,3 +186,4 @@ function getEmail($verein)
     $database->close();
     return $out;
 }
+
