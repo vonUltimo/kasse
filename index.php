@@ -9,38 +9,29 @@
     <meta charset="UTF-8">
     <title>Kasse</title>
     <link rel="stylesheet" href="css/skeleton.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/lib.js"></script>
+    <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-
-
-<script>
-    $(document).ready(function () {
-        var table = document.getElementsByTagName("tbody");
-        for (var i = 0, cell; cell = table.cells[i]; i++) {
-            if ($("td").text() <= 0) {
-                $("td").addClass("neg");
-            }
-        }
-    })
-</script>
-
 <div class="container">
-    <h3 class="title">Herzlich willkommen!</h3>
-
-    <div class="offset-by-one">
-
-        <p>
-            Der Kontostand von <?php echo getUser(2); ?> beträgt: <?php echo getKontostand(2); ?>.
-            <br/>
-            Anmelden du dich musst!<br/>
-            <?php echo getUserGroup(12) ?>
-        </p>
-        <?php getBuchungVon(10, 1) ?>
-        <?php echo getEntrys("user") ?>
-        <?php echo addVerwendungszweck("test") ?>
-        <?php getUserTable()?>
-    </div>
+    <section class="one">
+        <img class="value-img" src="pics/logo.png" alt="Logo" width="30%">
+        <h3>Bitte anmelden:</h3>
+    </section>
+</div>
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="six columns">
+                <label for="login">Login / E-Mail</label>
+                <input class="u-full-width" placeholder="test@web.de" id="exampleEmailInput" type="email">
+            </div>
+            <div class="six columns">
+                <label for="passwort">Passwort</label>
+                <input class="u-full-width" id="passwort" type="password" placeholder="Passwort">
+            </div>
+        </div>
+        <input class="button-primary" value="Absenden" type="submit">
+    </form>
+</div>
 </body>
 </html>
