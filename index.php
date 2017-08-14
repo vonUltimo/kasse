@@ -1,13 +1,12 @@
+<?php
+//require_once "php/login.php";
+require_once "php/db_abfragen.php";
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php
-    include "php/db_abfragen.php";
-    include "php/db_eingaben.php";
-    include "php/auswertungen.php";
-    ?>
     <meta charset="UTF-8">
-    <title>Kasse</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/custom.css">
 </head>
@@ -15,11 +14,11 @@
 <div class="container">
     <section class="one">
         <img class="value-img" src="pics/logo.png" alt="Logo" width="30%">
-        <h3>Bitte anmelden:</h3>
+        <h3>Herzlich willkommen bei der neuen supertollen Kasse von <?php echo getVName(0) ?></h3>
     </section>
 </div>
 <div class="container">
-    <form>
+    <form method="post" action="php/login.php?page=log">
         <div class="row">
             <div class="six columns">
                 <label for="login">Login / E-Mail</label>
