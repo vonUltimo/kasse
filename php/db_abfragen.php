@@ -142,6 +142,19 @@ function getUserGroup($gid)
     return "Diese Gruppe existiert nicht!";
 }
 
+function getIt($table, $zeile, $zeilenwert, $spalte){
+    /**
+     *Gibt Wert der spalte $spalte aus Tabelle $table where $zeile=$zeilenwert
+     */
+    $database = connect();
+    $sql = "SELECT * FROM $table WHERE $zeile "."="." '$zeilenwert';";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["$spalte"];
+    $database->close();
+    return $out;
+}
+
 function getUserGroupId($id)
     /*
       * gibt die Gruppenummer zu der übergebenen Nutzer ID zurück.

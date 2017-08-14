@@ -12,7 +12,7 @@
     <?php
     include "db_abfragen.php";
     include "db_eingaben.php";
-    $user = $_POST["username"]; //Hier muss noch die id abgefragt werden.
+    $user = 1;
     $usergrp = getUserGroupId($user);
 
     ?>
