@@ -3,18 +3,23 @@
  * Hier werden wir das Login-Script schreiben.
  * @author Sven Haberzettl <von.ultimo@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
- * @version 0.11 (14-08-2017)
+ * @version 0.2 (15-08-2017)
  * */
+session_start();
 require_once "db_abfragen.php";
-$html_ausgabe = 1; // 0 = Ausgangszustand, 1 = richtiger Login, 2 = falscher Login
-if ($html_ausgabe == 2) {
-    echo "Login ungültig!";
-    echo "<meta http-equiv=\"refresh\" content=\"3; URL=../index.php\">";
-} elseif ($html_ausgabe == 1) {
+$id=getIt("user", "email", $_POST["login"], "id");
+$pw_hash=getIt("user", "email", $_POST["login"], "passwort");
+
+// 1 = richtiger Login, "" = falscher Login
+$verify=password_verify($_POST["passwort"],$pw_hash);
+if ($verify == 1) {
     $email = $_POST["login"];
-    $_SESSION["userid"] = getIt("user", "email", "$email", "id");
-    print_r($_SESSION);
-    //echo "<meta http-equiv=\"refresh\" content=\"1; URL=protected.php\">";
+    $_SESSION["userid"] = $id;
+    echo "richtig :-)";
+    echo session_status();
+    print_r($_SESSION["userid"]);
+    echo "<meta http-equiv=\"refresh\" content=\"5; URL=protected.php\">";
 } else {
-    echo $html_ausgabe;
+    echo "Login falsch, Idiot!";
+    echo "<meta http-equiv=\"refresh\" content=\"3; URL=../index.php\">";
 }

@@ -40,10 +40,11 @@ function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp, $haus
     /**
      * Fügt einen Nutzer mit den übergebenen Parametern in die Tabelle user ein.
      */
+    $pw_hash=password_hash($passwort, PASSWORD_DEFAULT);
     $database = connect();
     $id = getEntrys('user') + 1;
     $sql = "INSERT INTO user (id, vorname, nachname, email, kontostand, zinsen, passwort, verein, gruppe, hausbewohner) 
-            VALUES  ($id, $vorname, $nachname, $email, 0, 0, $passwort, $verein, $usrgrp, $hausbewohner);";
+            VALUES  ($id, $vorname, $nachname, $email, 0, 0, $pw_hash, $verein, $usrgrp, $hausbewohner);";
     $database->query($sql);
     $database->close();
 

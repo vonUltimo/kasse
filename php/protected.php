@@ -12,7 +12,8 @@
     <?php
     include "db_abfragen.php";
     include "db_eingaben.php";
-    $user = 1;
+    echo session_status();
+    $user = $_SESSION["userid"];
     $usergrp = getUserGroupId($user);
 
     ?>

@@ -1,7 +1,4 @@
 <?php
-session_start();
-// remove all session variables
-session_unset();
 require_once "php/db_abfragen.php";
 ?>
 <!DOCTYPE html>
@@ -24,14 +21,14 @@ require_once "php/db_abfragen.php";
         <div class="row">
             <div class="six columns">
                 <label for="login">Login / E-Mail</label>
-                <input class="u-full-width" placeholder="test@web.de" id="login" type="email">
+                <input class="u-full-width" autofocus="1" placeholder="Deine E-Mail Adresse" name="login" type="email">
             </div>
             <div class="six columns">
                 <label for="passwort">Passwort</label>
-                <input class="u-full-width" id="passwort" type="password" placeholder="Passwort">
+                <input class="u-full-width" name="passwort" type="password" placeholder="Passwort">
             </div>
         </div>
-        <input class="button-primary" value="Absenden" type="submit">
+        <input class="button-primary" type="submit">
     </form>
 </div>
 </body>
