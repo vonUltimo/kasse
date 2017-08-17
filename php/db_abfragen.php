@@ -142,9 +142,22 @@ function getUserGroup($gid)
     return "Diese Gruppe existiert nicht!";
 }
 
+function getIt($table, $zeile, $zeilenwert, $spalte){
+    /**
+     *Gibt Wert der spalte $spalte aus Tabelle $table where $zeile=$zeilenwert
+     */
+    $database = connect();
+    $sql = "SELECT * FROM $table WHERE $zeile "."="." '$zeilenwert';";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["$spalte"];
+    $database->close();
+    return $out;
+}
+
 function getUserGroupId($id)
     /*
-      * gibt die Gruppenummer zu der übergebenen gid zurück.
+      * gibt die Gruppenummer zu der übergebenen Nutzer ID zurück.
      */
 {
     $database = connect();
@@ -152,6 +165,20 @@ function getUserGroupId($id)
     $result = $database->query($sql);
     $row = $result->fetch_assoc();
     $out = $row["gruppe"];
+    $database->close();
+    return $out;
+}
+
+function getVName($id)
+    /*
+      * gibt den Namen des Vereins mit der übergebenen id zurück.
+     */
+{
+$database = connect();
+    $sql = "SELECT * FROM verein WHERE VNummer=$id;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["VName"];
     $database->close();
     return $out;
 }
@@ -176,7 +203,8 @@ function getUser($user)
 function getEmail($verein)
 {
     /*
-     * Gibt alle EMail-Adressen der Nutzer des Vereins $verein als kommagetrennten String zurück
+     * Gibt alle EMail-Adressen der Nutzer des Vereins $verein als kommagetrennten String zurück.
+     * -- NICHT FERTIG --
      */
     $out = "";
     $database = connect();
