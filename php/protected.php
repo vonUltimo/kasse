@@ -4,6 +4,11 @@
  * @author Sven Haberzettl <von.ultimo@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * */
+session_start();
+if(!isset($_SESSION["userid"])){
+    echo "Haha, netter versuch ;-)";
+    echo "<meta http-equiv=\"refresh\" content=\"3; URL=../index.php\">";
+};
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +17,6 @@
     <?php
     include "db_abfragen.php";
     include "db_eingaben.php";
-    echo session_status();
     $user = $_SESSION["userid"];
     $usergrp = getUserGroupId($user);
 

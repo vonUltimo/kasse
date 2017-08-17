@@ -7,18 +7,19 @@
  * */
 session_start();
 require_once "db_abfragen.php";
+
 $id=getIt("user", "email", $_POST["login"], "id");
 $pw_hash=getIt("user", "email", $_POST["login"], "passwort");
-
-// 1 = richtiger Login, "" = falscher Login
 $verify=password_verify($_POST["passwort"],$pw_hash);
+
+
 if ($verify == 1) {
     $email = $_POST["login"];
     $_SESSION["userid"] = $id;
     echo "richtig :-)";
     echo session_status();
     print_r($_SESSION["userid"]);
-    echo "<meta http-equiv=\"refresh\" content=\"5; URL=protected.php\">";
+    echo "<meta http-equiv=\"refresh\" content=\"; URL=protected.php\">";
 } else {
     echo "Login falsch, Idiot!";
     echo "<meta http-equiv=\"refresh\" content=\"3; URL=../index.php\">";
