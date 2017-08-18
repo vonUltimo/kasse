@@ -24,6 +24,7 @@ if(!isset($_SESSION["userid"])){
     <meta charset="UTF-8">
     <title>Kasse f&uumlr: <?php echo getUser($user) ?></title>
     <link rel="stylesheet" href="../css/skeleton.css">
+    <link rel="stylesheet" href="../css/custom.css">
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/lib.js"></script>
 </head>
