@@ -6,20 +6,53 @@
  */
 session_start();
 if($_SESSION["usergroup"]!=1){
-    echo "Netter Versuch ;-)";
-    echo "<meta http-equiv=\"refresh\" content=\"3; URL=../index.php\">";
+    die('<meta http-equiv="refresh" content="0;URL=/kasse/index.php">');
 }
+require_once "../db_abfragen.php";
+$user=getUser($_SESSION["userid"]);
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <title>Kasse für <?php echo $user; ?></title>
+    <script src="/kasse/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="/kasse/css/skeleton.css">
+    <link rel="stylesheet" href="/kasse/css/custom.css">
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
 </head>
 <body>
+<div class="container">
+    <header>
+        <img class="header-img" src="/kasse/pics/logo.png"><br/>
+        <ul>
+            <li>
+                <button class="button-primary">Abfragen</button>
+            <ul>
+                <li>Sachen</li> <!-- Hier müssen wir mal schauen, wie wir das am sinnvollsten hinbekommen. -->
+                <li>Sachen</li>
+                <li>Sachen</li>
+                <li>Sachen</li>
+            </ul>
+            </li>
+            <li><button class="button-primary">Auswertungen</button></li>
+            <li><button class="button-primary">Eingaben</button></li>
+            <li><button class="button-primary">Nutzerverwaltung</button></li>
+            <li><button class="button-primary" id="logout"><strong>Logout</strong></button></li>
+        </ul>
+    </header>
+    <br />
+    <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt: <strong><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
+    <p>
+       Hier kommt die Ausgabe hin.
+    </p>
+
+</div>
 
 </body>
 </html>

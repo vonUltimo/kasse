@@ -2,3 +2,39 @@
     display: block;
     text-align: center;
     margin: 2.5rem auto 0; }
+
+.header-img{
+    display: block;
+    max-height: 4.5rem;
+    text-align: justify;
+    margin: 1rem auto 0;
+}
+
+#logout{
+    color: black;
+}
+
+header{
+    vertical-align: middle;
+    background-color: #404552;
+    border-radius: 5px;
+    color: white;
+    padding: 1rem;
+}
+header>ul{
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+header li{
+    display: inline;
+}
+
+header li>ul{
+    color: red;
+    display: none;
+}
+
+header li>ul:hover{
+    color: red;
+}
