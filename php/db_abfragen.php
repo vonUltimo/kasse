@@ -144,6 +144,7 @@ function getUserGroup($gid)
 
 function getIt($table, $zeile, $zeilenwert, $spalte){
     /**
+     * Univerlase Funktion um einen einzelnen Wert abzufragen.
      *Gibt Wert der spalte $spalte aus Tabelle $table where $zeile=$zeilenwert
      */
     $database = connect();
