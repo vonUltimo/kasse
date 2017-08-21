@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.25-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.26-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: Kasse
 -- ------------------------------------------------------
--- Server version	10.1.25-MariaDB
+-- Server version	10.1.26-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -105,7 +105,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Sven','Haberzettl','mail@sven-haberzettl.de',123.22,1,'2017-06-26 07:36:24',NULL,'passwort',1,1,0),(2,'Jan','Nemeth','jan.nemeth@web.de',0,0,'2017-06-26 08:09:57',NULL,'passwort',5,5,0),(3,'Peter','Wurst','p_123wurst@web.de',-23.32,0,'2017-06-28 10:16:44',NULL,'passwort',1,3,0),(4,'Erest','Nutzer','test.nutzer@web.de',13,0,'2017-07-06 17:25:58',NULL,'passwort',2,3,0),(5,'Bob','Müller','nutzerfurz@web.de',123,0,'2017-07-06 17:25:58',NULL,'passwort',2,2,0),(6,'Emilia','Schmidt','derbeste@web.de',93,0,'2017-07-06 17:25:58',NULL,'passwort',5,5,0),(7,'Elena','Tester','einmalindeinemleben@web.de',333,0,'2017-07-06 17:25:58',NULL,'passwort',3,4,0);
+INSERT INTO `user` VALUES (1,'Sven','Haberzettl','mail@sven-haberzettl.de',123.22,1,'2017-06-26 07:36:24',NULL,'$2y$10$Frhg8vMSY.1dtgId3SiVPeQb23HB5mvRpWpiTnEARO0yAJFZKDGYy',1,1,0),(2,'Jan','Nemeth','jan.nemeth@web.de',0,0,'2017-06-26 08:09:57',NULL,'$2y$10$yopaOg0oz2VQd3xQjBfjvecFwobDA1P9ryz8s0fuZ5qfQHSE0KNQq',5,5,0),(3,'Peter','Wurst','p_123wurst@web.de',-23.32,0,'2017-06-28 10:16:44',NULL,'passwort',1,3,0),(4,'Erest','Nutzer','test.nutzer@web.de',13,0,'2017-07-06 17:25:58',NULL,'passwort',2,3,0),(5,'Bob','Müller','nutzerfurz@web.de',123,0,'2017-07-06 17:25:58',NULL,'$2y$10$yopaOg0oz2VQd3xQjBfjvecFwobDA1P9ryz8s0fuZ5qfQHSE0KNQq',2,2,0),(6,'Emilia','Schmidt','derbeste@web.de',93,0,'2017-07-06 17:25:58',NULL,'passwort',5,5,0),(7,'Elena','Tester','einmalindeinemleben@web.de',333,0,'2017-07-06 17:25:58',NULL,'passwort',3,4,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-07 18:37:38
+-- Dump completed on 2017-08-21 10:44:14
