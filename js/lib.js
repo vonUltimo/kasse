@@ -8,8 +8,8 @@
 
 src="jquery-3.2.1.min";
 
-$(document).ready(function () {
-    foreach
-    if ($("td").text()<=0)
-    $("td").addClass("neg");
-})
+$(document).ready(function(){
+    $("#userdata").onclick(function () {
+        $("#Ausgabe").generate ausgabe("Ausgabe");
+    })
+});

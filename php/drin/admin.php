@@ -20,21 +20,17 @@ $user=getUser($_SESSION["userid"]);
     <script src="/kasse/js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="/kasse/css/skeleton.css">
     <link rel="stylesheet" href="/kasse/css/custom.css">
-    <script>
-        $(document).ready(function(){
-
-        });
-    </script>
+    <script src="/kasse/js/lib.js"></script>
 </head>
 <body>
 <div class="container">
     <header>
         <img class="header-img" src="/kasse/pics/logo.png"><br/>
-        <ul>
+        <ul class="dropdown">
             <li>
-                <button class="button-primary">Abfragen</button>
-            <ul>
-                <li>Sachen</li> <!-- Hier müssen wir mal schauen, wie wir das am sinnvollsten hinbekommen. -->
+                <button class="dropdown-buttom">Abfragen</button>
+            <ul class="dropdown-content">
+                <li><button class="button-primary" id="userdata">Benutzerdaten</button> </li> <!-- Hier müssen wir mal schauen, wie wir das am sinnvollsten hinbekommen. -->
                 <li>Sachen</li>
                 <li>Sachen</li>
                 <li>Sachen</li>
@@ -48,9 +44,9 @@ $user=getUser($_SESSION["userid"]);
     </header>
     <br />
     <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt: <strong><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
-    <p>
+    <div class="container" id="Ausgabe">
        Hier kommt die Ausgabe hin.
-    </p>
+    </div>
 
 </div>
 

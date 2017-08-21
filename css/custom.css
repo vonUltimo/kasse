@@ -30,11 +30,23 @@ header li{
     display: inline;
 }
 
-header li>ul{
-    color: red;
-    display: none;
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-header li>ul:hover{
-    color: red;
+.dropdown-buttom{
+    background-color: #33C3F0;
+    color: white;
+    border-color: #33C3F0;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
