@@ -37,6 +37,9 @@ header li{
     margin: auto;
 }
 
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 .dropdown-buttom{
     background-color: #33C3F0;
     color: white;
