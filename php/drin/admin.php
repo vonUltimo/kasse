@@ -45,7 +45,12 @@ $user=getUser($_SESSION["userid"]);
     <br />
     <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt: <strong><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
     <div class="container" id="Ausgabe">
+        <button class="button-primary">asfdasd</button>
        Hier kommt die Ausgabe hin.
+        <br />
+        <?php getUserTable(); ?>
+        <br />
+        <?php getBuchung("30", "2", "2"); ?>
     </div>
 
 </div>

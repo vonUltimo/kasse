@@ -17,6 +17,7 @@
 header{
     vertical-align: middle;
     background-color: #404552;
+    text-align: justify;
     border-radius: 5px;
     color: white;
     padding: 1rem;
@@ -31,8 +32,9 @@ header li{
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+    display: table;
+    text-align: justify;
+    margin: auto;
 }
 
 .dropdown-buttom{
