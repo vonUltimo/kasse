@@ -58,7 +58,7 @@ $user = getUser($_SESSION["userid"]);
     </header>
     <br/>
     <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
-        <strong><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
+        <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
     <div class="container" id="Ausgabe">
         <button class="button-primary">Das ist ein Knopf!</button>
         Hier kommt die Ausgabe hin.
