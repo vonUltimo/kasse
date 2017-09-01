@@ -60,12 +60,14 @@ $user = getUser($_SESSION["userid"]);
     <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
         <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
     <div class="container" id="Ausgabe">
-        <button class="button-primary">Das ist ein Knopf!</button>
+        <br/>
+            <button type="button" onclick="getUserTable()">Nutzer anzeigen</button>
+        <br/>
         Hier kommt die Ausgabe hin.
         <br/>
-        <?php getUserTable(); ?>
         <br/>
         <?php getBuchung("30", "2", "2"); ?>
+
     </div>
 
 </div>
