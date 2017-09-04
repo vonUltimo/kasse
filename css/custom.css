@@ -30,6 +30,10 @@ header>ul{
 header li{
     display: inline;
 }
+.eingabe-buttons, .eingabe-formular{
+    display: none;
+    margin: auto;
+}
 
 .dropdown {
     display: table;

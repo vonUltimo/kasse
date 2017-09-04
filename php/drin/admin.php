@@ -28,13 +28,7 @@ $user = getUser($_SESSION["userid"]);
         <img class="header-img" src="/kasse/pics/logo.png"><br/>
         <ul class="dropdown">
             <li>
-                <button class="dropdown-buttom">Abfragen</button>
-                <ul class="dropdown-content">
-                    <li><a href="#">Nutzerliste</a></li>
-                    <li><a href="#">Nutzerliste</a></li>
-                    <li><a href="#">Nutzerliste</a></li>
-                    <li><a href="#">Nutzerliste</a></li>
-                </ul>
+                <button class="button-primary">Abfragen</button>
             </li>
             <li>
                 <button class="button-primary">Auswertungen</button>
@@ -44,30 +38,47 @@ $user = getUser($_SESSION["userid"]);
             </li>
             <li>
                 <button class="button-primary">Nutzerverwaltung</button>
-                <ul class="dropdown-content">
-                    <li><a href="#">Nutzerliste</a></li>
-                    <li><a href="#">Nutzerliste</a></li>
-                    <li><a href="#">Nutzerliste</a></li>
-                    <li><a href="#">Nutzerliste</a></li>
-                </ul>
             </li>
             <li>
-                <button class="button-primary" id="logout"><strong>Logout</strong></button>
+                <a href="/kasse/php/logout.php">
+                    <button class="button-primary" id="logout"><strong>Logout</strong></button>
+                </a>
             </li>
         </ul>
     </header>
     <br/>
-    <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
-        <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
-    <div class="container" id="Ausgabe">
+    <h5>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
+        <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h5>
+    <div class="eingabe-buttons" id="Abfragen">
+        <button>getUserTable()</button>
+        <button>getBuchung()</button>
+        <button>getKontostand()</button>
+        <button>getIt</button>
+        <button>delBuchung</button>
+    </div>
+    <div class="eingabe-buttons" id="Auswertungen">
+        <button>addBuchung()</button>
+        <button>addVerwendungszweck()</button>
+    </div>
+    <div class="eingabe-buttons" id="Eingaben">
+        Test3
         <br/>
-            <button type="button" onclick="getUserTable()">Nutzer anzeigen</button>
+    </div>
+    <div class="eingabe-buttons" id="Nutzerverwaltung">
+        <button>addUser()</button>
         <br/>
-        Hier kommt die Ausgabe hin.
-        <br/>
-        <br/>
-        <?php getBuchung("30", "2", "2"); ?>
+    </div>
+    <div class="eingabe-formular">
+        <form>
+            <form>
+                <label>asdfhklfsapofuh</label>
 
+            </form>
+
+        </form>
+    </div>
+    <div class="container" id="Ausgabe">
+    Ausgabe!
     </div>
 
 </div>
