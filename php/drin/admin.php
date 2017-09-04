@@ -5,11 +5,11 @@
  * Version: 0.1
  */
 session_start();
-if($_SESSION["usergroup"]!=1){
+if ($_SESSION["usergroup"] != 1) {
     die('<meta http-equiv="refresh" content="0;URL=/kasse/index.php">');
 }
 require_once "../db_abfragen.php";
-$user=getUser($_SESSION["userid"]);
+$user = getUser($_SESSION["userid"]);
 ?>
 
 <!DOCTYPE html>
@@ -29,23 +29,45 @@ $user=getUser($_SESSION["userid"]);
         <ul class="dropdown">
             <li>
                 <button class="dropdown-buttom">Abfragen</button>
-            <ul class="dropdown-content">
-                <li><button class="button-primary" id="userdata">Benutzerdaten</button> </li> <!-- Hier müssen wir mal schauen, wie wir das am sinnvollsten hinbekommen. -->
-                <li>Sachen</li>
-                <li>Sachen</li>
-                <li>Sachen</li>
-            </ul>
+                <ul class="dropdown-content">
+                    <li><a href="#">Nutzerliste</a></li>
+                    <li><a href="#">Nutzerliste</a></li>
+                    <li><a href="#">Nutzerliste</a></li>
+                    <li><a href="#">Nutzerliste</a></li>
+                </ul>
             </li>
-            <li><button class="button-primary">Auswertungen</button></li>
-            <li><button class="button-primary">Eingaben</button></li>
-            <li><button class="button-primary">Nutzerverwaltung</button></li>
-            <li><button class="button-primary" id="logout"><strong>Logout</strong></button></li>
+            <li>
+                <button class="button-primary">Auswertungen</button>
+            </li>
+            <li>
+                <button class="button-primary">Eingaben</button>
+            </li>
+            <li>
+                <button class="button-primary">Nutzerverwaltung</button>
+                <ul class="dropdown-content">
+                    <li><a href="#">Nutzerliste</a></li>
+                    <li><a href="#">Nutzerliste</a></li>
+                    <li><a href="#">Nutzerliste</a></li>
+                    <li><a href="#">Nutzerliste</a></li>
+                </ul>
+            </li>
+            <li>
+                <button class="button-primary" id="logout"><strong>Logout</strong></button>
+            </li>
         </ul>
     </header>
-    <br />
-    <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt: <strong><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
+    <br/>
+    <h4>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
+        <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h4>
     <div class="container" id="Ausgabe">
-       Hier kommt die Ausgabe hin.
+        <br/>
+            <button type="button" onclick="getUserTable()">Nutzer anzeigen</button>
+        <br/>
+        Hier kommt die Ausgabe hin.
+        <br/>
+        <br/>
+        <?php getBuchung("30", "2", "2"); ?>
+
     </div>
 
 </div>

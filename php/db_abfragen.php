@@ -61,13 +61,20 @@ function getUserTable()
     $database->close();
 }
 
-function getBuchungVon($anzahl, $von)
+function getBuchung($anzahl, $user, $richtung)
     /**
-     * gibt die $anzahl letzten Buchungen von $von mit <td>Tags aus.
+     * gibt die $anzahl letzten Buchungen von $user mit <td>Tags aus.
+     * Richtung: 0=von user, 1= an user, 2 oder mehr=mit user
      */
 {
+    if ($richtung == 0) {
+        $sql = "SELECT * FROM buchung WHERE user_von=$user ORDER BY datum DESC LIMIT $anzahl;";
+    } elseif ($richtung == 1) {
+        $sql = "SELECT * FROM buchung WHERE user_zu=$user ORDER BY datum DESC LIMIT $anzahl;";
+    } else {
+        $sql = "SELECT * FROM buchung WHERE user_von=$user OR user_zu=$user ORDER BY datum DESC LIMIT $anzahl;";
+    }
     $database = connect();
-    $sql = "SELECT * FROM buchung WHERE user_von=$von ORDER BY datum DESC LIMIT $anzahl;";
     $result = $database->query($sql);
     echo "
     <table>
@@ -142,13 +149,14 @@ function getUserGroup($gid)
     return "Diese Gruppe existiert nicht!";
 }
 
-function getIt($table, $zeile, $zeilenwert, $spalte){
+function getIt($table, $zeile, $zeilenwert, $spalte)
+{
     /**
      * Univerlase Funktion um einen einzelnen Wert abzufragen.
      *Gibt Wert der spalte $spalte aus Tabelle $table where $zeile=$zeilenwert
      */
     $database = connect();
-    $sql = "SELECT * FROM $table WHERE $zeile "."="." '$zeilenwert';";
+    $sql = "SELECT * FROM $table WHERE $zeile " . "=" . " '$zeilenwert';";
     $result = $database->query($sql);
     $row = $result->fetch_assoc();
     $out = $row["$spalte"];
@@ -175,7 +183,7 @@ function getVName($id)
       * gibt den Namen des Vereins mit der übergebenen id zurück.
      */
 {
-$database = connect();
+    $database = connect();
     $sql = "SELECT * FROM verein WHERE VNummer=$id;";
     $result = $database->query($sql);
     $row = $result->fetch_assoc();
@@ -225,21 +233,21 @@ function delBuchung($buchungsid, $usergroup)
      */
     $database = connect();
     if ($usergroup == 2) {
-        $sql="UPDATE buchung SET zum_loeschen_vorgemerkt = '1' WHERE buchungsnummer=$buchungsid";
+        $sql = "UPDATE buchung SET zum_loeschen_vorgemerkt = '1' WHERE buchungsnummer=$buchungsid";
         $database->query($sql);
-        $database -> close();
+        $database->close();
         return "Der Datensatz Nr: $buchungsid wurde erfolgreich zum Löschen vorgemerkt.";
 
     } elseif ($usergroup == 1) {
-        $copy="INSERT INTO geloescht SELECT * FROM buchung WHERE zum_loeschen_vorgemerkt = 1;"; //vorgemerkte in geloescht kopieren.
+        $copy = "INSERT INTO geloescht SELECT * FROM buchung WHERE zum_loeschen_vorgemerkt = 1;"; //vorgemerkte in geloescht kopieren.
         $database->query($copy);
         $sql = "DELETE FROM buchung WHERE zum_loeschen_vorgemerkt = '1';"; //vorgemerkte in buchung löschen.
         $database->query($sql);
-        $database -> close();
+        $database->close();
         return "Der Datensatz Nr: $buchungsid wurde erfolgreich gelöscht.";
 
     } else {
-        $database -> close();
+        $database->close();
         return "Sie haben keine Berechtigung auf die Funktion zuzugreifen.";
-        }
+    }
 }

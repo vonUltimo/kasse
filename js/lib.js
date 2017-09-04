@@ -9,8 +9,16 @@
 src="jquery-3.2.1.min";
 
 $(document).ready(function(){
-    $("#userdata").onclick(function () {
-
-
-    })
+    $("td:contains('-')").filter(":contains('€')").addClass('neg');
 });
+
+function getUserTable() {
+    // NICHT FERTIG ich arbeite noch dran
+    $.ajax({
+      url: "/kasse/php/db_abfragen.php",
+        data: "",
+        success: function (data) {
+            $("#Ausgabe").html(erg);
+        }
+    })
+}
