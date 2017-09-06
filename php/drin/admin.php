@@ -47,10 +47,11 @@ $user = getUser($_SESSION["userid"]);
         </ul>
     </header>
     <br/>
-    <h5>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
-        <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h5>
+    <div>
+        <h5>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
+            <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h5>
+    </div>
     <div class="eingabe-buttons" id="Abfragen">
-        <button>getUserTable()</button>
         <button>getBuchung()</button>
         <button>getKontostand()</button>
         <button>getIt</button>
@@ -65,20 +66,21 @@ $user = getUser($_SESSION["userid"]);
         <br/>
     </div>
     <div class="eingabe-buttons" id="Nutzerverwaltung">
+        <button onclick="getUserTable();">getUserTable()</button>
         <button>addUser()</button>
         <br/>
     </div>
     <div class="eingabe-formular">
-        <form>
-            <form>
-                <label>asdfhklfsapofuh</label>
-
-            </form>
-
+        <form method="POST" action="<?php $_SERVER["PHP_SELF"] ?>">
+            <label>
+                wasd
+            </label>
         </form>
     </div>
     <div class="container" id="Ausgabe">
-    Ausgabe!
+        <?php
+        getUserTable();
+        ?>
     </div>
 
 </div>
