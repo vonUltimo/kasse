@@ -14,7 +14,7 @@ $(document).ready(function(){
         // Selector"alles danach" finden
         $(".eingabe-buttons").hide();
         $(".eingabe-formular").hide();
-        $("#Ausgabe").hide();
+        //$("#Ausgabe").hide();
     });
         //schleife für verschiedene Buttons *HIER*
     $(".button-primary:contains('Abfragen')").click(function () {
@@ -31,13 +31,14 @@ $(document).ready(function(){
     });
     /*___________________Formular____________________ */
 
+    $("#Formular1").hide();
 });
 
 
 function getUserTable() {
     // NICHT FERTIG ich arbeite noch dran
     $.ajax({
-      url: "/kasse/php/db_abfragen.php",
+      url: "/kasse/php/db_request.php",
         data: "",
         success: function (data) {
             $("#Ausgabe").html(erg);

@@ -1,20 +1,21 @@
 .value-img {
     display: block;
     text-align: center;
-    margin: 2.5rem auto 0; }
+    margin: 2.5rem auto 0;
+}
 
-.header-img{
+.header-img {
     display: block;
     max-height: 4.5rem;
     text-align: justify;
     margin: 1rem auto 0;
 }
 
-#logout{
+#logout {
     color: black;
 }
 
-header{
+header {
     vertical-align: middle;
     background-color: #404552;
     text-align: justify;
@@ -22,40 +23,62 @@ header{
     color: white;
     padding: 1rem;
 }
-header>ul{
+
+header > ul {
     padding: 0;
     list-style-type: none;
     text-align: center;
 }
-header li{
+
+header li {
     display: inline;
 }
-.eingabe-buttons, .eingabe-formular{
+
+.eingabe-buttons, .eingabe-formular {
     display: none;
     margin: auto;
 }
 
 .dropdown {
-    display: table;
-    text-align: justify;
-    margin: auto;
+    position: relative;
+    display: inline-block;
+}
+.dropdown-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #33C3F0;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.dropdown-buttom{
-    background-color: #33C3F0;
+
+.dropdown-content a {
     color: white;
-    border-color: #33C3F0;
-    cursor: pointer;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+.dropdown-content a:hover {
+    background-color: #404552;
+}
+
+.dropdown:hover .dropdown-button {
+    background-color: #3e8e41;
 }

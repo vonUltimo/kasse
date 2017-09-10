@@ -5,7 +5,7 @@
  * @version 0.3 (18-08-2017)
  * */
 session_start();
-require_once "db_abfragen.php";
+require_once "db_request.php";
 
 $id=getIt("user", "email", $_POST["login"], "id");
 $usergroup=getIt("user", "id", $id, "gruppe");
@@ -19,19 +19,17 @@ if ($verify == 1) {
     $_SESSION["usergroup"] = $usergroup;
     echo session_status();
     if($usergroup==1){
-        echo "<meta http-equiv=\"refresh\" content=\"; URL=drin/admin.php\">";
-    }elseif ($$usergroup==2){
-        echo "<meta http-equiv=\"refresh\" content=\"; URL=drin/kw.php\">";
-    }elseif ($$usergroup==3){
-        echo "<meta http-equiv=\"refresh\" content=\"; URL=drin/member.php\">";
-    }elseif ($$usergroup==4){
-        echo "<meta http-equiv=\"refresh\" content=\"; URL=drin/ah.php\">";
-    }elseif ($$usergroup==5){
-        echo "<meta http-equiv=\"refresh\" content=\"; URL=drin/gw.php\">";
+        echo "<meta http-equiv=\"refresh\" content=\"; URL=./admin.php\">";
+    }elseif ($usergroup==2){
+        echo "<meta http-equiv=\"refresh\" content=\"; URL=./kw.php\">";
+    }elseif ($usergroup==3){
+        echo "<meta http-equiv=\"refresh\" content=\"; URL=./am.php\">";
+    }elseif ($usergroup==4){
+        echo "<meta http-equiv=\"refresh\" content=\"; URL=./pm.php\">";
     }else{
-        echo "<meta http-equiv=\"refresh\" content=\"; URL=drin/guest.php\">";
+        echo "<meta http-equiv=\"refresh\" content=\"; URL=./guest.php\">";
     }
 } else {
-    echo "Login falsch, Idiot!";
-    echo "<meta http-equiv=\"refresh\" content=\"3; URL=../index.php\">";
+    echo "Die angegeben Login Daten sind nicht korrekt, sie werden zur Startseite weitergeleitet.";
+    echo "<meta http-equiv=\"refresh\" content=\"5; URL=../index.php\">";
 }

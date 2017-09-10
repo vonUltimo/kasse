@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "php/db_abfragen.php";
+require_once "php/db_request.php";
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -30,6 +30,13 @@ require_once "php/db_abfragen.php";
             </div>
         </div>
         <input class="button-primary" type="submit">
+    </form>
+    <form method="post" action="php/login.php">
+        <div class="row">
+            <div class="six columns">
+                <button class="button-primary" type="submit">als Gast anmelden</button>
+            </div>
+        </div>
     </form>
 </div>
 </body>
