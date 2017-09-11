@@ -15,8 +15,7 @@ if ($_SESSION["usergroup"] = 2) {
     ?>
     <!DOCTYPE html>
     <html lang="de">
-    <?php
-    echo $head;?>
+    <?php echo $head;?>
     <body>
     <?php kasse_header(); ?>
 
