@@ -211,6 +211,7 @@ function getUser($user)
 function getUserID($prename,$lastname)
     /*
       * gibt die ID eines bestimmten Benutzers wieder.
+     * --NICHT FERTIG--
      */
 {
     $database = connect();
