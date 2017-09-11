@@ -208,6 +208,22 @@ function getUser($user)
     }
     return "Dieser Nutzer existiert nicht!";
 }
+function getUserID($prename,$lastname)
+    /*
+      * gibt die ID eines bestimmten Benutzers wieder.
+     */
+{
+    $database = connect();
+    $sql = "SELECT * FROM user WHERE vorname=$prename AND nachname=$lastname;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row['id'];
+    $database->close();
+    if ($out != " ") {
+        return $out;
+    }
+    return "Dieser Nutzer existiert nicht!";
+}
 
 function getEmail($verein)
 {

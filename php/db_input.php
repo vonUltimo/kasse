@@ -7,7 +7,7 @@
  * */
 
 include_once "lib.php";
-include_once "db_abfragen.php";
+include_once "db_request.php";
 
 function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
     /*
