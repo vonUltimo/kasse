@@ -8,76 +8,37 @@ session_start();
 if ($_SESSION["usergroup"] < 5) {
 
     require_once "db_request.php";
+    require_once "kasse_header.php";
+    $head = file_get_contents('htmlx/head.html');
     $user = getUser($_SESSION["userid"]);
     ?>
 
     <!DOCTYPE html>
     <html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <title>Kasse für <?php echo $user; ?></title>
-        <script src="/kasse/js/jquery-3.2.1.min.js"></script>
-        <link rel="stylesheet" href="/kasse/css/skeleton.css">
-        <link rel="stylesheet" href="/kasse/css/custom.css">
-        <script src="/kasse/js/lib.js"></script>
-    </head>
+    <?php
+    echo $head;
+    ?>
     <body>
-    <div class="container" align="center">
-        <header>
-            <img class="header-img" src="/kasse/pics/logo.png"><br/>
-            <div>
-                <div class="dropdown">
-                    <button class="button-primary">Auswertungen</button>
-                    <div class="dropdown-content">
-                        <a href="get_booking.php">Buchungen anzeigen</a>
-                        <a href="get_konto.php">Kontostand anzeigen</a>
-                        <a href="#">getIt</a>
-                        <a href="#">delBuchung</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="button-primary">Eingaben</button>
-                    <div class="dropdown-content">
-                        <a href="#">3</a>
-                        <a href="#">3</a>
-                        <a href="#">3</a>
-                        <a href="#">3</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="button-primary">Nutzerverwaltung</button>
-                    <div class="dropdown-content">
-                        <a href="memberlist.php">Mitgliederliste anzeigen</a>
-                        <a href="#">4</a>
-                        <a href="#">4</a>
-                        <a href="#">4</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a href="/kasse/php/logout.php">
-                        <button class="button-primary" id="logout"><strong>Logout</strong></button>
-                    </a>
-                </div>
-            </div>
-        </header>
-        <br/>
-        <div>
-            <h5>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
-                <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h5>
-        </div>
-    </div>
+    <?php
+    kasse_header();
+    ?>
     <div class="container">
         <?php if (!isset($_POST["quantity"])) { ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <label for="quantity">Anzahl</label> <input name="quantity" id="quantity" type="number">
-                <label for="username">Anzahl</label> <input name="username" id="username" type="text">
-                <label for="direction">Richtung</label> <input name="direction" id="direction" type="number">
+                <label for="quantity">Anzahl</label> <input name="quantity" value="5" type="number" min="1">
+                <label for="useroption">Nutzer</label><select name="useroption"><?php getUserOption() ?></select>
+                <label for="direction">Richtung</label>
+                <select name="direction">
+                    <option value="0">abgehende Buchungen</option>
+                    <option value="1">eingehende Buchungen</option>
+                    <option value="2">alle Buchungen</option>
+                </select>
                 <input class="button-primary" type="submit">
             </form>
             <?php
         } else {
             $anzahl = $_POST["quantity"];
-            $user = $_POST["username"];
+            $user = $_POST["useroption"];
             $richtung = $_POST["direction"];
             getBuchung($anzahl, $user, $richtung);
         } ?>

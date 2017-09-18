@@ -61,6 +61,86 @@ function getUserTable()
     $database->close();
 }
 
+function getUserOption()
+    /**
+     * gibt alle Nutzer mit <option>Tags aus.
+     */
+{
+    $database = connect();
+    $sql = 'SELECT * FROM user;';
+    $result = $database->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo
+                "<option value=".$row["id"].">" . $row["vorname"] ." ".$row["nachname"] ."</option>" ;
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    $database->close();
+}
+
+function getVereinOption()
+    /**
+     * gibt alle Vereine mit <option>Tags aus.
+     */
+{
+    $database = connect();
+    $sql = 'SELECT * FROM verein;';
+    $result = $database->query($sql);
+    echo "<select name=\"vereinoption\">\n";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo
+                "<option value=".$row["VNummer"].">" . $row["VName"] ."</option>" ;
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    echo "</select>";
+    $database->close();
+}
+
+function getUserGroupOption()
+    /**
+     * gibt alle Nutzergruppen mit <option>Tags aus.
+     */
+{
+    $database = connect();
+    $sql = 'SELECT * FROM usergroup WHERE gid > 2;';
+    $result = $database->query($sql);
+    echo "<select name=\"usergroupOption\">\n";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo
+                "<option value=".$row["gid"].">" . $row["gname"] ."</option>" ;
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    echo "</select>";
+    $database->close();
+}
+
+function getVerwendungszweckOption()
+    /**
+     * gibt alle Verwendungszwecke mit <option>Tags aus.
+     */
+{
+    $database = connect();
+    $sql = 'SELECT * FROM verwendungszweck;';
+    $result = $database->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo
+                "<option value=".$row["zwecknummer"].">" . $row["Beschreibung"] ."</option>" ;
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    $database->close();
+}
+
 function getBuchung($anzahl, $user, $richtung)
     /**
      * gibt die $anzahl letzten Buchungen von $user mit <td>Tags aus.
@@ -247,6 +327,9 @@ function delBuchung($buchungsid, $usergroup)
 {
     /*
      * Löscht den übergebenen Datensatz bzw. merkt diesen zur Löschung vor. (Je nach Nutzergruppe)
+     *
+     * --NICHT FERTIG---
+     * Beträge müssen auch gebucht werden!
      */
     $database = connect();
     if ($usergroup == 2) {
