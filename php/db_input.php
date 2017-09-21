@@ -12,13 +12,19 @@ include_once "db_request.php";
 function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
     /*
      *
-     * --NICHT FERTIG--
      */
 {
     $bnr = getEntrys("buchung") + 1;
+    $kontostandVon=getIt("user", "id",$von, "kontostand");
+    $kontostandZu=getIt("user", "id",$zu, "kontostand");
     $database = connect();
-    $sql = "INSERT INTO buchungen (buchungsnummer, zwecknummer, betrag, user_von, user_nach, log, anmerkung) 
-            VALUES ($bnr, $zweck, $betrag, $von, $zu, $logid, $anmerkung);";
+    $buchung= "INSERT INTO buchung (buchungsnummer, zwecknummer, datum, betrag, user_von, user_zu, log, anmerkung) 
+            VALUES ('$bnr', '$zweck', NOW(), '$betrag', '$von', '$zu', '$logid', '$anmerkung');";
+    $abgang= "UPDATE user SET kontostand = $kontostandVon-$betrag WHERE id=$von;";
+    $zugang= "UPDATE user SET kontostand = $kontostandZu+$betrag WHERE id=$zu";
+    $database->query($abgang);
+    $database->query($zugang);
+    $database->query($buchung);
     $database->close();
 
 }
@@ -35,7 +41,7 @@ function addVerwendungszweck($beschreibung)
     $database->close();
 }
 
-function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp, $hausbewohner)
+function addUser($vorname, $nachname, $email, $passwort, $verein, $usrgrp, $hausbewohner)
 {
     /**
      * Fügt einen Nutzer mit den übergebenen Parametern in die Tabelle user ein.
@@ -44,8 +50,15 @@ function addUser($nachname, $vorname, $email, $passwort, $verein, $usrgrp, $haus
     $database = connect();
     $id = getEntrys('user') + 1;
     $sql = "INSERT INTO user (id, vorname, nachname, email, kontostand, zinsen, passwort, verein, gruppe, hausbewohner) 
-            VALUES  ($id, $vorname, $nachname, $email, 0, 0, $pw_hash, $verein, $usrgrp, $hausbewohner);";
+            VALUES  ('$id', '$vorname', '$nachname', '$email', '0', '0', '$pw_hash', '$verein', '$usrgrp', '$hausbewohner');";
     $database->query($sql);
     $database->close();
+
+}
+
+function updateUser(){
+    /*
+     * --NICHT FERTIG--
+     */
 
 }

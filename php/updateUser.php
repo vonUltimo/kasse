@@ -5,10 +5,11 @@
  * Version: 0.1
  */
 session_start();
-if ($_SESSION["usergroup"] = 1) {
+if ($_SESSION["usergroup"] < 3) {
 
     require_once "db_request.php";
     require_once "kasse_header.php";
+    require_once "db_input.php";
     $head = file_get_contents('htmlx/head.html');
     $user = getUser($_SESSION["userid"]);
     ?>
@@ -24,15 +25,27 @@ if ($_SESSION["usergroup"] = 1) {
     ?>
     <div class="container">
         <?php
-        if (!isset($_POST["useroption"])) { ?>
+        if (!isset($_POST["user"])) { ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <label for="useroption">Nutzer</label>
-                <select name="useroption"><?php getUserOption() ?></select>
+                <label for="user">Welcher Nutzer soll geändert werden?</label><select
+                    name="user"><?php getUserOption(); ?></select>
                 <input class="button-primary" type="submit">
             </form>
             <?php
+        }elseif(!isset($_POST["email"])){
+            //--NICHT FERTIG--
+                ?>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
+                    <input name="email" type="email" PLACEHOLDER="TESST">
+                    <input class="button-primary" type="submit">
+                </form>
+
+                <?php
+
+            print_r($_POST);
         } else {
-            echo "Der Kontostand von " . getUser($_POST["useroption"]) ." beträgt ". getKontostand($_POST["useroption"]);
+
+            echo "Erfolg";
         } ?>
     </div>
     </body>

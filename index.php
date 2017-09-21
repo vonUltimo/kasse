@@ -31,13 +31,6 @@ require_once "php/db_request.php";
         </div>
         <input class="button-primary" type="submit">
     </form>
-    <form method="post" action="php/login.php">
-        <div class="row">
-            <div class="six columns">
-                <button class="button-primary" type="submit">als Gast anmelden</button>
-            </div>
-        </div>
-    </form>
 </div>
 </body>
 </html>

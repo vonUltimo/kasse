@@ -16,6 +16,9 @@ if ($_SESSION["usergroup"] = 1) {
     <html lang="de">
     <?php
     echo $head;
+    ?>
+    <body>
+    <?php
     kasse_header();
    ?>
 
