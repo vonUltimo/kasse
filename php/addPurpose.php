@@ -25,33 +25,16 @@ if ($_SESSION["usergroup"] < 3) {
     ?>
     <div class="container">
         <?php
-        if (!isset($_POST["user"])) { ?>
+        if (!isset($_POST["purpose"])) { ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <label for="user">Welcher Nutzer soll geändert werden?</label><select
-                    name="user"><?php getUserOption(); ?></select>
+                <label for="purpose">Neuen Verwendungszweck anlegen</label><input name="purpose" type="text" required placeholder="Getränkeabrechnung">
                 <input class="button-primary" type="submit">
             </form>
             <?php
-            print_r($_POST);
-        }elseif(!isset($_POST["text"])){
-            $_SESSION["updateUser"]=$_POST["user"];
-                ?>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                    <?php getUserUpdate($_SESSION["updateUser"]); ?>
-                    <input class="button-primary" type="submit" value="Nutzer aktualisieren">
-                </form>
-                <?php
-            print_r($_POST);
-            echo "<br/>";
-            print_r($_SESSION);
         } else {
-
-            echo "Erfolg";
-            echo "POST: ";
-            print_r($_POST);
-            echo "<br/>SESSION: ";
-            print_r($_SESSION);
-
+            $purpose = $_POST["purpose"];
+            addPurpose($purpose);
+            echo "Der Verwendungszweck " . $_POST["purpose"] . " wurde erfolgreich angelegt.";
         } ?>
     </div>
     </body>

@@ -25,33 +25,16 @@ if ($_SESSION["usergroup"] < 3) {
     ?>
     <div class="container">
         <?php
-        if (!isset($_POST["user"])) { ?>
+        if (!isset($_POST["club"])) { ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <label for="user">Welcher Nutzer soll geändert werden?</label><select
-                    name="user"><?php getUserOption(); ?></select>
+                <label for="club">Neuen Verein anlegen</label><input name="club" type="text" required placeholder="TSV Friedberg e.V.">
                 <input class="button-primary" type="submit">
             </form>
             <?php
-            print_r($_POST);
-        }elseif(!isset($_POST["text"])){
-            $_SESSION["updateUser"]=$_POST["user"];
-                ?>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                    <?php getUserUpdate($_SESSION["updateUser"]); ?>
-                    <input class="button-primary" type="submit" value="Nutzer aktualisieren">
-                </form>
-                <?php
-            print_r($_POST);
-            echo "<br/>";
-            print_r($_SESSION);
         } else {
-
-            echo "Erfolg";
-            echo "POST: ";
-            print_r($_POST);
-            echo "<br/>SESSION: ";
-            print_r($_SESSION);
-
+            $club = $_POST["club"];
+            addClub($club);
+            echo "Der Verwendungszweck " . $_POST["club"] . " wurde erfolgreich angelegt.";
         } ?>
     </div>
     </body>

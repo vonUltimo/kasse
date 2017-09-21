@@ -56,9 +56,37 @@ function addUser($vorname, $nachname, $email, $passwort, $verein, $usrgrp, $haus
 
 }
 
-function updateUser(){
+function addPurpose($purpose){
     /*
-     * --NICHT FERTIG--
      */
+    $database = connect();
+    $id = getEntrys('verwendungszweck') + 1;
+    $sql="INSERT INTO verwendungszweck VALUES ('$id', '$purpose');";
+    $database->query($sql);
+    $database->close();
+}
 
+function addClub($club){
+    /*
+     */
+    $database = connect();
+    $id = getEntrys('verein') + 1;
+    $sql="INSERT INTO verein VALUES ('$id', '$club');";
+    $database->query($sql);
+    $database->close();
+}
+
+function getUserUpdate($user){
+    /*
+     * -_NICHT FERTIG--
+     */
+    $database = connect();
+    $sql = "SELECT * FROM user WHERE id=$user;";
+    $result = $database->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            echo
+                "<label for='id'>ID</label><input name='id' type='text' max='5' value='" . $row["id"] . "'>"
+            ;
+        }
+    $database->close();
 }
