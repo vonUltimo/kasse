@@ -32,7 +32,7 @@ if ($_SESSION["usergroup"] < 3) {
                 <label for="email">E-Mail</label><input name="email" type="email" required placeholder="max@mustermann.de">
                 <label for="passwort">Passwort</label><input name="passwort" type="password" required placeholder="passwort123">
                 <label for="passwort2">Passwort wiederholen</label><input name="passwort2" type="password" required placeholder="passwort123">
-                <label for="vereinoption">Verein</label> <?php getVereinOption(); ?>
+                <label for="vereinoption">Verein</label> <?php getVereinSelectOption(); ?>
                 <label for="usergroupOption">Nutzergruppe</label> <?php getUserGroupOption(); ?>
                 <label for="hausbewohner">Hausbewohner</label>
                 <select name="hausbewohner">

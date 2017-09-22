@@ -33,11 +33,12 @@ if ($_SESSION["usergroup"] < 3) {
             </form>
             <?php
             print_r($_POST);
-        }elseif(!isset($_POST["text"])){
+        }elseif(!isset($_POST["email"])){
             $_SESSION["updateUser"]=$_POST["user"];
                 ?>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
                     <?php getUserUpdate($_SESSION["updateUser"]); ?>
+                    <input name="user" type="hidden">
                     <input class="button-primary" type="submit" value="Nutzer aktualisieren">
                 </form>
                 <?php
@@ -45,13 +46,21 @@ if ($_SESSION["usergroup"] < 3) {
             echo "<br/>";
             print_r($_SESSION);
         } else {
-
-            echo "Erfolg";
-            echo "POST: ";
-            print_r($_POST);
-            echo "<br/>SESSION: ";
-            print_r($_SESSION);
-
+            if($_POST["passwort"]==$_POST["passwort2"]){
+                kasse_header();
+                updateUser();
+                echo "Der Nutzer ". $_POST["vorname"]." ".$_POST["nachname"]." wurde erfolgreich aktualisiert.";
+            }else{
+                echo "Passwörter stimmen nicht überein!
+                    <br/>
+                    <button onclick=\"goBack()\">Zurück</button>
+                <script>
+                    function goBack() {
+                    window.history.back();
+                    }
+                </script>                 
+                ";
+            }
         } ?>
     </div>
     </body>

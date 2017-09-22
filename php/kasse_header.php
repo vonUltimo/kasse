@@ -55,6 +55,4 @@ function kasse_header(){
             </div>
         </div>
     </header>
-</div>
-<br/>
-";}
+</div>";}

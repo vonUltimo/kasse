@@ -14,7 +14,7 @@ require_once "php/db_request.php";
 <div class="container">
     <section class="one">
         <img class="value-img" src="pics/logo.png" alt="Logo" width="30%">
-        <h3>Die neue supertolle Kasse von <?php echo getVName(0) ?></h3>
+        <h3>Die neue supertolle Kasse von <?php echo getVName(1) ?></h3>
     </section>
 </div>
 <div class="container">
