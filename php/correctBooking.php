@@ -25,23 +25,12 @@ if ($_SESSION["usergroup"] < 3) {
     ?>
     <div class="container">
         <?php
-        if (!isset($_POST["user"])) { ?>
+        if (!isset($_POST["zwecknummer"])) { ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <label for="user">Welcher Nutzer soll geändert werden?</label><select
-                        name="user"><?php getUserOption(); ?></select>
+                <?php getCorrectBooking(); ?>
                 <input class="button-primary" type="submit">
             </form>
             <?php
-        } elseif (!isset($_POST["email"])) {
-            $_SESSION["updateUser"] = $_POST["user"];
-            ?>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
-                <?php getUserUpdate($_SESSION["updateUser"]); ?>
-                <input name="user" type="hidden">
-                <input class="button-primary" type="submit" value="Nutzer aktualisieren">
-            </form>
-            <?php
-
         } else {
             if ($_POST["passwort"] == $_POST["passwort2"]) {
                 $id = $_SESSION["updateUser"];
