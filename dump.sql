@@ -33,7 +33,7 @@ CREATE TABLE `buchung` (
   `anmerkung` varchar(255) DEFAULT NULL,
   `zum_loeschen_vorgemerkt` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`buchungsnummer`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf16;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `buchung` (
 
 LOCK TABLES `buchung` WRITE;
 /*!40000 ALTER TABLE `buchung` DISABLE KEYS */;
-INSERT INTO `buchung` VALUES (1,1,'2017-06-26',12.22,1,2,1,'Geschenk für Peter',NULL),(2,2,'2017-06-26',123.12,2,1,1,NULL,NULL),(3,1,'2017-06-28',56.54,1,2,1,'Geschenk für Peter',NULL),(4,2,'2017-06-28',526.54,1,2,1,'Geschenk für Peter',NULL),(5,1,'2017-06-29',56.54,2,1,1,NULL,1),(6,1,'2017-07-01',356.54,1,2,1,'Geschenk für Peter',NULL);
+INSERT INTO `buchung` VALUES (1,1,'2017-06-26',12.22,1,2,1,'Geschenk für Peter',NULL),(2,2,'2017-06-26',123.12,2,1,1,NULL,NULL),(3,1,'2017-06-28',56.54,1,2,1,'Geschenk für Peter',NULL),(4,2,'2017-06-28',526.54,1,2,1,'Geschenk für Peter',NULL),(5,1,'2017-06-29',56.54,2,1,1,NULL,1),(6,1,'2017-07-01',356.54,1,2,1,'Geschenk für Peter',NULL),(7,1,'0000-00-00',132.99,3,1,1,'asdf',NULL),(8,1,'2017-09-18',1231.11,5,1,1,'Gelt',NULL),(9,1,'2017-09-18',79.33,3,1,1,'asdf2 :-)',NULL),(10,1,'2017-09-18',123.55,3,1,1,'qwe',NULL),(11,1,'2017-09-18',532.99,4,2,1,'Test122',NULL),(12,1,'2017-09-18',93,6,1,1,'räumen',NULL),(13,1,'2017-09-21',223.44,5,3,1,'Nichts',NULL),(14,1,'2017-09-21',123.33,2,1,1,'',NULL),(15,1,'2017-09-21',22.99,1,2,1,'',NULL);
 /*!40000 ALTER TABLE `buchung` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +105,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Sven','Haberzettl','mail@sven-haberzettl.de',123.22,1,'2017-06-26 07:36:24',NULL,'$2y$10$Frhg8vMSY.1dtgId3SiVPeQb23HB5mvRpWpiTnEARO0yAJFZKDGYy',1,1,0),(2,'Jan','Nemeth','jan.nemeth@web.de',0,0,'2017-06-26 08:09:57',NULL,'$2y$10$yopaOg0oz2VQd3xQjBfjvecFwobDA1P9ryz8s0fuZ5qfQHSE0KNQq',5,5,0),(3,'Peter','Wurst','p_123wurst@web.de',-23.32,0,'2017-06-28 10:16:44',NULL,'passwort',1,3,0),(4,'Erest','Nutzer','test.nutzer@web.de',13,0,'2017-07-06 17:25:58',NULL,'passwort',2,3,0),(5,'Bob','Müller','nutzerfurz@web.de',123,0,'2017-07-06 17:25:58',NULL,'$2y$10$yopaOg0oz2VQd3xQjBfjvecFwobDA1P9ryz8s0fuZ5qfQHSE0KNQq',2,2,0),(6,'Emilia','Schmidt','derbeste@web.de',93,0,'2017-07-06 17:25:58',NULL,'passwort',5,5,0),(7,'Elena','Tester','einmalindeinemleben@web.de',333,0,'2017-07-06 17:25:58',NULL,'passwort',3,4,0);
+INSERT INTO `user` VALUES (1,'Sven','Haberzettl','mail@sven-haberzettl.de',548.89,1,'2017-06-26 07:36:24',NULL,'$2y$10$Frhg8vMSY.1dtgId3SiVPeQb23HB5mvRpWpiTnEARO0yAJFZKDGYy',1,1,0),(2,'Jan','Nemeth','jan.nemeth@web.de',432.65,0,'2017-06-26 08:09:57',NULL,'$2y$10$yopaOg0oz2VQd3xQjBfjvecFwobDA1P9ryz8s0fuZ5qfQHSE0KNQq',5,5,0),(3,'Peter','Wurst','p_123wurst@web.de',76.57,0,'2017-06-28 10:16:44',NULL,'passwort',1,5,0),(4,'Erest','Nutzer','test.nutzer@web.de',-519.99,0,'2017-07-06 17:25:58',NULL,'passwort',2,15,0),(5,'Bob','Müller','nutzerfurz@web.de',-100.44,0,'2017-07-06 17:25:58',NULL,'$2y$10$yopaOg0oz2VQd3xQjBfjvecFwobDA1P9ryz8s0fuZ5qfQHSE0KNQq',2,15,0),(6,'Emilia','Schmidt','derbeste@web.de',0,0,'2017-07-06 17:25:58',NULL,'passwort',5,99,0),(7,'Elena','Tester','einmalindeinemleben@web.de',333,0,'2017-07-06 17:25:58',NULL,'passwort',3,99,0),(8,'Max','Mustermann','max@mustermann.de',0,0,'2017-09-18 11:16:47',NULL,'$2y$10$ou2hysnlLDI6UDGTnyXD5Oo32yKPKlBQ2vL0mnfD9BbojPfRFcxeG',1,99,0),(9,'Matthias','Sams','m.sams@gmail.com',0,0,'2017-09-21 13:00:30',NULL,'$2y$10$f/s5PNWVHPtQap/aQnHs1uW/AtLqxY0M4oVi5/n09gjVh9QFTY2S2',0,99,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `usergroup` (
 
 LOCK TABLES `usergroup` WRITE;
 /*!40000 ALTER TABLE `usergroup` DISABLE KEYS */;
-INSERT INTO `usergroup` VALUES (1,'GODMODE'),(2,'Kassenwart'),(3,'Aktives Mitglied'),(4,'Passives Mitglied'),(99,'Gast');
+INSERT INTO `usergroup` VALUES (1,'Admin'),(5,'Kassenwart'),(10,'Getränkewart'),(15,'aktives Mitglied'),(20,'passives Mitglied'),(99,'Gast');
 /*!40000 ALTER TABLE `usergroup` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +153,7 @@ CREATE TABLE `verein` (
 
 LOCK TABLES `verein` WRITE;
 /*!40000 ALTER TABLE `verein` DISABLE KEYS */;
-INSERT INTO `verein` VALUES (0,'SV Friedberg 1899 eV'),(1,'TV Fauerbach 1925'),(2,'TSV Hammersbach');
+INSERT INTO `verein` VALUES (1,'SV Friedberg 1899 eV'),(2,'TSV Rot-Weiß Bibabuzzebach');
 /*!40000 ALTER TABLE `verein` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `verwendungszweck` (
 
 LOCK TABLES `verwendungszweck` WRITE;
 /*!40000 ALTER TABLE `verwendungszweck` DISABLE KEYS */;
-INSERT INTO `verwendungszweck` VALUES (0,'Beireitung'),(1,'Querbuchung'),(2,'Getränkeabrechnung'),(3,'Zinsbuchung'),(5,'test'),(6,'test'),(7,'test'),(8,'test'),(9,'test'),(10,'test'),(11,'test'),(12,'test'),(13,'test'),(14,'test'),(15,'test'),(16,'test'),(17,'test'),(18,'test'),(19,'test'),(20,'test'),(21,'test'),(22,'test'),(23,'test'),(24,'test'),(25,'test'),(26,'test'),(27,'test'),(28,'test'),(29,'test'),(30,'test'),(31,'test'),(32,'test'),(33,'test'),(34,'test'),(35,'test'),(36,'test'),(37,'test'),(38,'test'),(39,'test'),(40,'test'),(41,'test'),(42,'test'),(43,'test'),(44,'test'),(45,'test'),(46,'test'),(47,'test'),(48,'test'),(49,'test'),(50,'test'),(51,'test'),(52,'test'),(53,'test'),(54,'test'),(55,'test');
+INSERT INTO `verwendungszweck` VALUES (1,'Querbuchung');
 /*!40000 ALTER TABLE `verwendungszweck` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -190,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-21 10:44:14
+-- Dump completed on 2017-09-22 17:45:51

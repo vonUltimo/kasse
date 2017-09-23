@@ -28,10 +28,10 @@ if ($_SESSION["usergroup"] < 3) {
         if (!isset($_POST["betrag"])) { ?>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>">
                 <label for="verwendungszweckOption">Verwendungszweck</label><select name="verwendungszweckOption"><?php getVerwendungszweckOption(); ?></select>
-                <label for="betrag">Betrag</label><input name="betrag" type="number" step="0.01" required placeholder="53.55">
+                <label for="betrag">Betrag</label><input name="betrag" type="number" step="0.01" required placeholder="10,50" oninvalid="this.setCustomValidity('Bitte geben Sie einen gültigen Betrag ein')">
                 <label for="userFrom">Abgehendes Konto</label><select name="userFrom"><?php getUserOption(); ?></select>
                 <label for="userTo">Zugehendes Konto</label><select name="userTo"><?php getUserOption(); ?></select>
-                <label for="comment">Anmerkung</label> <input type="text" name="comment" size="43" required placeholder="Dient zur Ergänzung des Verwendungszweckes.">
+                <label for="comment">Anmerkung</label> <input type="text" name="comment" size="43" placeholder="Dient zur Ergänzung des Verwendungszweckes.">
                 <input class="button-primary" type="submit">
             </form>
             <?php

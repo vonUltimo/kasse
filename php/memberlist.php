@@ -19,11 +19,6 @@ if ($_SESSION["usergroup"] < 3){
     echo $head;?>
     <body>
     <?php kasse_header(); ?>
-
-        <div>
-            <h5>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
-                <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h5>
-        </div>
         <br/>
         <div class="container">
             <?php getUserTable(); ?>

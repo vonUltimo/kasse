@@ -21,6 +21,10 @@ if ($_SESSION["usergroup"] = 1) {
     <?php
     kasse_header();
    ?>
+    <div>
+        <h5>Hallo <?php echo $user; ?>, dein Kontostand bertägt:
+            <strong class="betrag"><?php echo getKontostand($_SESSION["userid"]); ?></strong></h5>
+    </div>
 
     </body>
     </html>

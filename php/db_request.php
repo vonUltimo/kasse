@@ -80,9 +80,9 @@ function getUserOption()
     $database->close();
 }
 
-function getVereinOption()
+function getVereinSelectOption()
     /**
-     * gibt alle Vereine mit <option>Tags aus.
+     * gibt alle Vereine mit <select><option>Tags aus.
      */
 {
     $database = connect();
@@ -99,6 +99,30 @@ function getVereinOption()
     }
     echo "</select>";
     $database->close();
+}
+
+function getVereinOption($verein)
+    /**
+     * gibt alle Vereine mit <option>Tags aus.
+     */
+{
+$database = connect();
+    $sql = 'SELECT * FROM verein;';
+    $result = $database->query($sql);
+    $out="";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if($row["VNummer"]==$verein) {
+                $out .= "<option selected value=" . $row["VNummer"] . ">" . $row["VName"] . "</option>";
+            }else{
+                $out .= "<option value=" . $row["VNummer"] . ">" . $row["VName"] . "</option>";
+            }
+        }
+    } else {
+        $out="";
+    }
+    $database->close();
+    return $out;
 }
 
 function getUserGroupOption()
@@ -120,6 +144,31 @@ function getUserGroupOption()
     }
     echo "</select>";
     $database->close();
+}
+
+
+function getGruppeOption($gruppe)
+    /**
+     * gibt alle Vereine mit <option>Tags aus.
+     */
+{
+    $database = connect();
+    $sql = 'SELECT * FROM usergroup;';
+    $result = $database->query($sql);
+    $out="";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if ($row["gid"]== $gruppe) {
+                $out .= "<option selected value=" . $row["gid"] . ">" . $row["gname"] . "</option>";
+            } else {
+                $out .= "<option value=" . $row["gid"] . ">" . $row["gname"] . "</option>";
+            }
+        }
+    } else {
+        $out="";
+    }
+    $database->close();
+    return $out;
 }
 
 function getVerwendungszweckOption()

@@ -24,7 +24,7 @@ function kasse_header(){
                 <button class=\"button-primary\">Eingaben</button>
                 <div class=\"dropdown-content\">
                     <a href=\"add_booking.php\">Buchung anlegen</a>
-                    <a href=\"#\">3</a>
+                    <a href=\"#\">Buchung ändern</a>
                     <a href=\"#\">3</a>
                     <a href=\"#\">3</a>
                     <a href=\"#\">3</a>
@@ -42,8 +42,8 @@ function kasse_header(){
             <div class=\"dropdown\">
                 <button class=\"button-primary\">Datenbankverwaltung</button>
                 <div class=\"dropdown-content\">
-                    <a href=\"#\">Verwendungszweck hinzufügen</a>
-                    <a href=\"#\">Verein hinzufügen</a>
+                    <a href=\"addPurpose.php\">Verwendungszweck hinzufügen</a>
+                    <a href=\"addClub.php\">Verein hinzufügen</a>
                     <a href=\"#\">Buchung löschen</a>
                     <a href=\"#\">3</a>
                 </div>
@@ -55,6 +55,4 @@ function kasse_header(){
             </div>
         </div>
     </header>
-</div>
-<br/>
-";}
+</div>";}

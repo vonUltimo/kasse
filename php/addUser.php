@@ -31,7 +31,8 @@ if ($_SESSION["usergroup"] < 3) {
                 <label for="nachname">Nachname</label><input name="nachname" type="text" required placeholder="Mustermann">
                 <label for="email">E-Mail</label><input name="email" type="email" required placeholder="max@mustermann.de">
                 <label for="passwort">Passwort</label><input name="passwort" type="password" required placeholder="passwort123">
-                <label for="vereinoption">Verein</label> <?php getVereinOption(); ?>
+                <label for="passwort2">Passwort wiederholen</label><input name="passwort2" type="password" required placeholder="passwort123">
+                <label for="vereinoption">Verein</label> <?php getVereinSelectOption(); ?>
                 <label for="usergroupOption">Nutzergruppe</label> <?php getUserGroupOption(); ?>
                 <label for="hausbewohner">Hausbewohner</label>
                 <select name="hausbewohner">
@@ -42,15 +43,26 @@ if ($_SESSION["usergroup"] < 3) {
             </form>
             <?php
         } else {
-            $vorname=$_POST["vorname"];
-            $nachname=$_POST["nachname"];
-            $email=$_POST["email"];
-            $passwort=$_POST["passwort"];
-            $verein=$_POST["vereinoption"];
-            $usrgrp=$_POST["usergroupOption"];
-            $hausbewohner=$_POST["hausbewohner"];
+            if ($_POST["passwort"] != $_POST["passwort2"]) {
+                die("Passwörter stimmen nicht überein!
+                <br />
+                <button onclick=\"goBack()\">Zurück</button>
+                <script>
+                    function goBack() {
+                    window.history.back();
+                    }
+                </script> 
+                ");
+            };
+            $vorname = $_POST["vorname"];
+            $nachname = $_POST["nachname"];
+            $email = $_POST["email"];
+            $passwort = $_POST["passwort"];
+            $verein = $_POST["vereinoption"];
+            $usrgrp = $_POST["usergroupOption"];
+            $hausbewohner = $_POST["hausbewohner"];
             addUser($vorname, $nachname, $email, $passwort, $verein, $usrgrp, $hausbewohner);
-            echo "Der Benutzer " . $_POST["vorname"] ." ". $_POST["nachname"] . " wurde erfolgreich angelegt.";
+            echo "Der Benutzer " . $_POST["vorname"] . " " . $_POST["nachname"] . " wurde erfolgreich angelegt.";
         } ?>
     </div>
     </body>
