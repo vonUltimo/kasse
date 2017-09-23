@@ -78,7 +78,6 @@ function addClub($club){
 
 function getUserUpdate($user){
     /*
-     * -_NICHT FERTIG--
      */
     $database = connect();
     $sql = "SELECT * FROM user WHERE id=$user;";
@@ -87,7 +86,7 @@ function getUserUpdate($user){
             echo
                 "<label for='vorname'>Vorname</label><input name='vorname' type='text' value='" . $row["vorname"] . "'>\n".
                 "<label for='nachname'>Nachname</label><input name='nachname' type='text' value='" . $row["nachname"] . "'>\n".
-                "<label for='email'>E-Mail-Adresse</label><input name='email' type='text' value='" . $row["email"] . "'>\n".
+                "<label for='email'>E-Mail-Adresse</label><input name='email' type='email' value='" . $row["email"] . "'>\n".
                 "<label for='zinsen'>Zinsbefreit?</label><select name='zinsen'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
                 "<label for='hausbewohner'>Hausbewohner?</label><select name='hausbewohner'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
                 "<label for='passwort'>Passwort</label><input name='passwort' type='password'>\n".
@@ -99,17 +98,22 @@ function getUserUpdate($user){
     $database->close();
 }
 
-function updateUser($id, $vorname, $nachname, $email, $zinsen, $hausbewohner, $passwort, $verein, $gruppe){
+function getCorrectBooking(){
     /*
      * --NICHT FERTIG--
-     * if abfragen für passwort, hausbewohner, Verein, gruppe
-     * --NICHT FERTIG--
+     */
+
+
+}
+
+function updateUser($id, $vorname, $nachname, $email, $zinsen, $hausbewohner, $passwort, $verein, $gruppe){
+    /*
      */
     if($passwort!=""){
         $pwHash=password_hash($passwort, 1);
-        $sql="UPDATE user SET vorname='$vorname', nachname='$nachname', email='$email', zinsen='$zinsen', verein='$verein', gruppe='$gruppe', hausbewohner='$hausbewohner', passwort='$pwHash' WHERE id='$id'";
+        $sql="UPDATE user SET vorname='$vorname', nachname='$nachname', email='$email', zinsen='$zinsen', verein='$verein', gruppe='$gruppe', hausbewohner='$hausbewohner', passwort='$pwHash' WHERE id='$id';";
     }else{
-        $sql="UPDATE user SET vorname='$vorname', nachname='$nachname', email='$email', zinsen='$zinsen', verein='$verein', gruppe='$gruppe', hausbewohner='$hausbewohner' WHERE id='$id'";
+        $sql="UPDATE user SET vorname='$vorname', nachname='$nachname', email='$email', zinsen='$zinsen', verein='$verein', gruppe='$gruppe', hausbewohner='$hausbewohner' WHERE id='$id';";
     }
     $database = connect();
     $database->query($sql);
