@@ -125,6 +125,28 @@ $database = connect();
     return $out;
 }
 
+function getVerwendungszweckOptionS($zweck){
+
+    $database = connect();
+    $sql = 'SELECT * FROM verwendungszweck;';
+    $result = $database->query($sql);
+    $out="";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if($row["zwecknummer"]==$zweck) {
+                $out .= "<option selected value=" . $row["zwecknummer"] . ">" . $row["Beschreibung"] . "</option>";
+            }else{
+                $out .= "<option value=" . $row["zwecknummer"] . ">" . $row["Beschreibung"] . "</option>";
+            }
+        }
+    } else {
+        $out="";
+    }
+    $database->close();
+    return $out;
+
+}
+
 function getUserGroupOption()
     /**
      * gibt alle Nutzergruppen mit <option>Tags aus.

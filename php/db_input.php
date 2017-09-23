@@ -102,7 +102,24 @@ function getCorrectBooking(){
     /*
      * --NICHT FERTIG--
      */
-
+    $database = connect();
+    $bnr=getEntrys(buchung);
+    $sql = "SELECT * FROM buchung WHERE buchungsnummer=$bnr;";
+    $result = $database->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo
+            "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["buchungsnummer"])."</select>\n".
+            "<label for='nachname'>Nachname</label><input name='nachname' type='text' value='" . $row["nachname"] . "'>\n".
+            "<label for='email'>E-Mail-Adresse</label><input name='email' type='email' value='" . $row["email"] . "'>\n".
+            "<label for='zinsen'>Zinsbefreit?</label><select name='zinsen'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
+            "<label for='hausbewohner'>Hausbewohner?</label><select name='hausbewohner'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
+            "<label for='passwort'>Passwort</label><input name='passwort' type='password'>\n".
+            "<label for='passwort2'>Passwort wiederholen</label><input name='passwort2' type='password'>\n".
+            "<label for='verein'>Verein</label>"."<select name='verein'>".getVereinOption($row["verein"])."</select>\n".
+            "<label for='gruppe'>Gruppe</label>"."<select name='gruppe'>".getGruppeOption($row["gruppe"] )."</select>\n"
+        ;
+    }
+    $database->close();
 
 }
 
