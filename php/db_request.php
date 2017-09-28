@@ -80,6 +80,28 @@ function getUserOption()
     $database->close();
 }
 
+function getUserOptionS($user){
+    /*
+     * --NICHT FERTIG##
+     */
+    $database = connect();
+    $sql = "select * from user;";
+    $result = $database->query($sql);
+    $out = "";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            if($row["id"]==$user) {
+                $out .= "<option selected value=" . $row["id"] . ">" . $row["vorname"]  ." ". $row["nachname"]. "</option>\n";
+            }else{
+                $out .= "<option value=" . $row["id"] . ">" . $row["vorname"]  ." ". $row["nachname"]. "</option>\n";
+            }
+        }
+    } else {
+        $out="";
+    }
+    $database->close();
+    return $out;
+}
 function getVereinSelectOption()
     /**
      * gibt alle Vereine mit <select><option>Tags aus.

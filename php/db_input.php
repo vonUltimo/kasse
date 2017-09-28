@@ -101,22 +101,20 @@ function getUserUpdate($user){
 function getCorrectBooking(){
     /*
      * --NICHT FERTIG--
+     * @todo selected value läuft bei beiden Select nicht
      */
     $database = connect();
-    $bnr=getEntrys(buchung);
+    $bnr=getEntrys('buchung');
     $sql = "SELECT * FROM buchung WHERE buchungsnummer=$bnr;";
     $result = $database->query($sql);
+    print_r($result);
     while ($row = $result->fetch_assoc()) {
         echo
-            "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["buchungsnummer"])."</select>\n".
-            "<label for='nachname'>Nachname</label><input name='nachname' type='text' value='" . $row["nachname"] . "'>\n".
-            "<label for='email'>E-Mail-Adresse</label><input name='email' type='email' value='" . $row["email"] . "'>\n".
-            "<label for='zinsen'>Zinsbefreit?</label><select name='zinsen'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
-            "<label for='hausbewohner'>Hausbewohner?</label><select name='hausbewohner'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
-            "<label for='passwort'>Passwort</label><input name='passwort' type='password'>\n".
-            "<label for='passwort2'>Passwort wiederholen</label><input name='passwort2' type='password'>\n".
-            "<label for='verein'>Verein</label>"."<select name='verein'>".getVereinOption($row["verein"])."</select>\n".
-            "<label for='gruppe'>Gruppe</label>"."<select name='gruppe'>".getGruppeOption($row["gruppe"] )."</select>\n"
+            "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["zwecknummer"])."</select>\n".
+            "<label for='betrag'>Betrag</label><input name='betrag' type='text' value='" . $row["betrag"] . "'>\n".
+            "<label for='userFrom'>Abgehendes Konto</label><select name='userFrom'>".getUserOptionS($row["user_von"])."</select>\n".
+            "<label for='userTo'>Zugehendes Konto</label><select name='userTo'>".getUserOptionS($row["user_von"])."</select>\n".
+            "<label for='comment'>Anmerkung</label><input name='comment' value='".$row["anmerkung"]."'>\n"
         ;
     }
     $database->close();
