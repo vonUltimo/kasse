@@ -24,7 +24,7 @@ function kasse_header(){
                 <button class=\"button-primary\">Eingaben</button>
                 <div class=\"dropdown-content\">
                     <a href=\"add_booking.php\">Buchung anlegen</a>
-                    <a href=\"correctBooking.php\">Buchung korrigieren unfertig</a>
+                    <a href=\"correctBooking.php\">letzte Buchung korrigieren unfertig</a>
                 </div>
             </div>
             <div class=\"dropdown\">

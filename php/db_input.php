@@ -29,6 +29,27 @@ function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
 
 }
 
+function correctBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
+    /*
+     * --NICHT FERTIG--
+     * @todo Buchung auf Nutzerkonten / vorher abziehen!
+     */
+{
+    $bnr = getEntrys("buchung");
+    $kontostandVon=getIt("user", "id",$von, "kontostand");
+    $kontostandZu=getIt("user", "id",$zu, "kontostand");
+    $database = connect();
+    $buchung= "INSERT INTO buchung (buchungsnummer, zwecknummer, datum, betrag, user_von, user_zu, log, anmerkung) 
+            VALUES ('$bnr', '$zweck', NOW(), '$betrag', '$von', '$zu', '$logid', '$anmerkung');";
+    $abgang= "UPDATE user SET kontostand = $kontostandVon-$betrag WHERE id=$von;";
+    $zugang= "UPDATE user SET kontostand = $kontostandZu+$betrag WHERE id=$zu";
+    $database->query($abgang);
+    $database->query($zugang);
+    $database->query($buchung);
+    $database->close();
+
+}
+
 function addVerwendungszweck($beschreibung)
     /*
      * Fügt einen neuen Eintrag mit der übergebenen Beschreibung in die Tabelle verwendungszweck ein.
@@ -100,20 +121,17 @@ function getUserUpdate($user){
 
 function getCorrectBooking(){
     /*
-     * --NICHT FERTIG--
-     * @todo selected value läuft bei beiden Select nicht
      */
     $database = connect();
     $bnr=getEntrys('buchung');
     $sql = "SELECT * FROM buchung WHERE buchungsnummer=$bnr;";
     $result = $database->query($sql);
-    print_r($result);
     while ($row = $result->fetch_assoc()) {
         echo
             "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["zwecknummer"])."</select>\n".
             "<label for='betrag'>Betrag</label><input name='betrag' type='text' value='" . $row["betrag"] . "'>\n".
             "<label for='userFrom'>Abgehendes Konto</label><select name='userFrom'>".getUserOptionS($row["user_von"])."</select>\n".
-            "<label for='userTo'>Zugehendes Konto</label><select name='userTo'>".getUserOptionS($row["user_von"])."</select>\n".
+            "<label for='userTo'>Zugehendes Konto</label><select name='userTo'>".getUserOptionS($row["user_zu"])."</select>\n".
             "<label for='comment'>Anmerkung</label><input name='comment' value='".$row["anmerkung"]."'>\n"
         ;
     }
