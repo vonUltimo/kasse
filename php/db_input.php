@@ -38,9 +38,15 @@ function correctBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
     $bnr = getEntrys("buchung");
     $kontostandVon=getIt("user", "id",$von, "kontostand");
     $kontostandZu=getIt("user", "id",$zu, "kontostand");
+    $alterBetrag=getIt("buchung", "buchungsnummer",$bnr, "betrag");
     $database = connect();
-    $buchung= "INSERT INTO buchung (buchungsnummer, zwecknummer, datum, betrag, user_von, user_zu, log, anmerkung) 
-            VALUES ('$bnr', '$zweck', NOW(), '$betrag', '$von', '$zu', '$logid', '$anmerkung');";
+    //alte Buchung rückgängig machen
+    $revAbgang= "UPDATE user SET kontostand = $kontostandVon+$alterBetrag WHERE id=$von;";
+    $revZugang= "UPDATE user SET kontostand = $kontostandZu-$alterBetrag WHERE id=$zu";
+    $database->query($revAbgang);
+    $database->query($revZugang);
+    $buchung= "UPDATE buchung SET buchungsnummer = $bnr, zwecknummer = $zweck, datum = NOW(), betrag = $betrag, user_von = $von, user_zu = $zu, log = $logid, anmerkung = '$anmerkung';";
+    //neue Buchung auf Kontostand schreiben
     $abgang= "UPDATE user SET kontostand = $kontostandVon-$betrag WHERE id=$von;";
     $zugang= "UPDATE user SET kontostand = $kontostandZu+$betrag WHERE id=$zu";
     $database->query($abgang);
