@@ -32,35 +32,20 @@ if ($_SESSION["usergroup"] < 3) {
             </form>
             <?php
         } else {
-            if ($_POST["passwort"] == $_POST["passwort2"]) {
-                $id = $_SESSION["updateUser"];
-                $vorname = $_POST["vorname"];
-                $nachname = $_POST["nachname"];
-                $email = $_POST["email"];
-                $zinsen = $_POST["zinsen"];
-                $hausbewohner = $_POST["hausbewohner"];
-                $passwort = $_POST["passwort"];
-                $verein = $_POST["verein"];
-                $gruppe = $_POST["gruppe"];
-                updateUser($id, $vorname, $nachname, $email, $zinsen, $hausbewohner, $passwort, $verein, $gruppe);
-                echo "Der Nutzer " . $_POST["vorname"] . " " . $_POST["nachname"] . " wurde erfolgreich aktualisiert.";
-            } else {
-                echo "Passwörter stimmen nicht überein!
-                    <br/>
-                    <button onclick=\"goBack()\">Zurück</button>
-                <script>
-                    function goBack() {
-                    window.history.back();
-                    }
-                </script>                 
-                ";
-            }
-        } ?>
+            $zweck=$_POST["zwecknummer"];
+            $betrag=$_POST["betrag"];
+            $von=$_POST["userFrom"];
+            $zu=$_POST["userTo"];
+            $anmerkung=$_POST["comment"];
+            $loguser=$_SESSION["userid"];
+            correctBuchung($zweck, $betrag, $von, $zu, $loguser, $anmerkung);
+            echo "Die Korrektur wurde erfolgreich durchgeführt.";
+            } ?>
     </div>
     </body>
     </html>
     <?php
-} else {
-    die('<meta http-equiv="refresh" content="0;URL=/kasse/index.php">');
-}
+    } else {
+        die('<meta http-equiv="refresh" content="0;URL=/kasse/index.php">');
+    }
 ?>

@@ -29,6 +29,33 @@ function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
 
 }
 
+function correctBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
+    /*
+     * --NICHT FERTIG--
+     * @todo Buchung auf Nutzerkonten / vorher abziehen!
+     */
+{
+    $bnr = getEntrys("buchung");
+    $kontostandVon=getIt("user", "id",$von, "kontostand");
+    $kontostandZu=getIt("user", "id",$zu, "kontostand");
+    $alterBetrag=getIt("buchung", "buchungsnummer",$bnr, "betrag");
+    $database = connect();
+    //alte Buchung rückgängig machen
+    $revAbgang= "UPDATE user SET kontostand = $kontostandVon+$alterBetrag WHERE id=$von;";
+    $revZugang= "UPDATE user SET kontostand = $kontostandZu-$alterBetrag WHERE id=$zu";
+    $database->query($revAbgang);
+    $database->query($revZugang);
+    $buchung= "UPDATE buchung SET buchungsnummer = $bnr, zwecknummer = $zweck, datum = NOW(), betrag = $betrag, user_von = $von, user_zu = $zu, log = $logid, anmerkung = '$anmerkung';";
+    //neue Buchung auf Kontostand schreiben
+    $abgang= "UPDATE user SET kontostand = $kontostandVon-$betrag WHERE id=$von;";
+    $zugang= "UPDATE user SET kontostand = $kontostandZu+$betrag WHERE id=$zu";
+    $database->query($abgang);
+    $database->query($zugang);
+    $database->query($buchung);
+    $database->close();
+
+}
+
 function addVerwendungszweck($beschreibung)
     /*
      * Fügt einen neuen Eintrag mit der übergebenen Beschreibung in die Tabelle verwendungszweck ein.
@@ -100,23 +127,18 @@ function getUserUpdate($user){
 
 function getCorrectBooking(){
     /*
-     * --NICHT FERTIG--
      */
     $database = connect();
-    $bnr=getEntrys(buchung);
+    $bnr=getEntrys('buchung');
     $sql = "SELECT * FROM buchung WHERE buchungsnummer=$bnr;";
     $result = $database->query($sql);
     while ($row = $result->fetch_assoc()) {
         echo
-            "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["buchungsnummer"])."</select>\n".
-            "<label for='nachname'>Nachname</label><input name='nachname' type='text' value='" . $row["nachname"] . "'>\n".
-            "<label for='email'>E-Mail-Adresse</label><input name='email' type='email' value='" . $row["email"] . "'>\n".
-            "<label for='zinsen'>Zinsbefreit?</label><select name='zinsen'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
-            "<label for='hausbewohner'>Hausbewohner?</label><select name='hausbewohner'><option value='0'>Nein</option><option value='1'>Ja</option></select>\n".
-            "<label for='passwort'>Passwort</label><input name='passwort' type='password'>\n".
-            "<label for='passwort2'>Passwort wiederholen</label><input name='passwort2' type='password'>\n".
-            "<label for='verein'>Verein</label>"."<select name='verein'>".getVereinOption($row["verein"])."</select>\n".
-            "<label for='gruppe'>Gruppe</label>"."<select name='gruppe'>".getGruppeOption($row["gruppe"] )."</select>\n"
+            "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["zwecknummer"])."</select>\n".
+            "<label for='betrag'>Betrag</label><input name='betrag' type='text' value='" . $row["betrag"] . "'>\n".
+            "<label for='userFrom'>Abgehendes Konto</label><select name='userFrom'>".getUserOptionS($row["user_von"])."</select>\n".
+            "<label for='userTo'>Zugehendes Konto</label><select name='userTo'>".getUserOptionS($row["user_zu"])."</select>\n".
+            "<label for='comment'>Anmerkung</label><input name='comment' value='".$row["anmerkung"]."'>\n"
         ;
     }
     $database->close();
