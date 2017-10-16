@@ -24,7 +24,6 @@ function kasse_header(){
                 <button class=\"button-primary\">Eingaben</button>
                 <div class=\"dropdown-content\">
                     <a href=\"add_booking.php\">Buchung anlegen</a>
-                    <a href=\"correctBooking.php\">letzte Buchung korrigieren unfertig</a>
                 </div>
             </div>
             <div class=\"dropdown\">
@@ -34,15 +33,18 @@ function kasse_header(){
                     <a href=\"addUser.php\">Nutzer hinzufügen</a>
                     <a href=\"updateUser.php\">Nutzer aktualisieren</a>     
                 </div>
-            </div>
+            </div>";
+            if ($_SESSION['usergroup'] <= 10){
+                echo "
             <div class=\"dropdown\">
                 <button class=\"button-primary\">Datenbankverwaltung</button>
                 <div class=\"dropdown-content\">
                     <a href=\"addPurpose.php\">Verwendungszweck hinzufügen</a>
                     <a href=\"addClub.php\">Verein hinzufügen</a>
-                    <a href=\"#\">Buchung löschen unfertig</a>
+                    <a href=\"delBooking.php\">Buchung löschen</a>
                 </div>
-            </div>
+            </div>";}
+            echo "
             <div class=\"dropdown\">
                 <a href=\"/kasse/php/logout.php\">
                     <button class=\"button-primary\" id=\"logout\"><strong>Logout</strong></button>

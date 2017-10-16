@@ -277,6 +277,86 @@ function getBuchung($anzahl, $user, $richtung)
     $database->close();
 }
 
+function getBuchungToDel()
+    /**
+     * --NICHT FERTIG--
+     */
+{
+    $sql = "SELECT * FROM buchung WHERE zum_loeschen_vorgemerkt != '1' ORDER BY buchungsnummer DESC LIMIT 10;";
+    $database = connect();
+    $result = $database->query($sql);
+    echo "
+    <form method=\"post\" action=".htmlspecialchars($_SERVER["PHP_SELF"]) .">
+    <table>
+    <tr>
+        <th>Löschen?</th>
+        <th>Bebucht von</th>
+        <th>Gebucht an</th>
+        <th>Betrag</th>  
+        <th>Gebucht am</th>
+        <th>Verwendungszweck</th>
+        <th>Anmerkung</th>
+    </tr>";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>" .
+                "<td><input type='checkbox' name='".$row["buchungsnummer"]."' value='".$row["buchungsnummer"]."'></td>" .
+                "<td>" . getUser($row["user_von"]) . "</td>" .
+                "<td>" . getUser($row["user_zu"]) . "</td>" .
+                "<td>" . $row["betrag"] . " €" . "</td>" .
+                "<td>" . $row["datum"] . "</td>" .
+                "<td>" . getVerwendungszweck($row["zwecknummer"]) . "</td>" .
+                "<td>" . $row["anmerkung"] . "</td>" .
+                "</tr>";
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    echo "</table> <br><input type='submit'></form>";
+    $database->close();
+}
+
+function getBuchungDel()
+    /**
+     * --NICHT FERTIG--
+     */
+{
+    $sql = "SELECT * FROM buchung ORDER BY zum_loeschen_vorgemerkt DESC LIMIT 20;";
+    $database = connect();
+    $result = $database->query($sql);
+    echo "
+    <form method=\"post\" action=".htmlspecialchars($_SERVER["PHP_SELF"]) .">
+    <table>
+    <tr>
+        <th>Löschen?</th>
+        <th>Bereits vorgemerkt</th>
+        <th>Bebucht von</th>
+        <th>Gebucht an</th>
+        <th>Betrag</th>  
+        <th>Gebucht am</th>
+        <th>Verwendungszweck</th>
+        <th>Anmerkung</th>
+    </tr>";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>" .
+                "<td><input type='checkbox' name='".$row["buchungsnummer"]."' value='".$row["buchungsnummer"]."'></td>" .
+                "<td>" . boolZuText($row["zum_loeschen_vorgemerkt"]) . "</td>" .
+                "<td>" . getUser($row["user_von"]) . "</td>" .
+                "<td>" . getUser($row["user_zu"]) . "</td>" .
+                "<td>" . $row["betrag"] . " €" . "</td>" .
+                "<td>" . $row["datum"] . "</td>" .
+                "<td>" . getVerwendungszweck($row["zwecknummer"]) . "</td>" .
+                "<td>" . $row["anmerkung"] . "</td>" .
+                "</tr>";
+        }
+    } else {
+        echo "Keine Inhalte";
+    }
+    echo "</table> <br><input type='submit'></form>";
+    $database->close();
+}
+
 function getVerwendungszweck($zwecknummer)
     /*
        * gibt den Namen des Verwendungszweckes mit der übergebenen zwecknummer zurück.
@@ -381,6 +461,17 @@ function getUser($user)
     }
     return "Dieser Nutzer existiert nicht!";
 }
+
+function getLastBuchung(){
+    $database = connect();
+    $sql = "SELECT MAX(buchungsnummer) AS nr FROM buchung;";
+    $result = $database->query($sql);
+    $row = $result->fetch_assoc();
+    $out = $row["nr"];
+    $database->close();
+    return $out;
+}
+
 function getUserID($prename,$lastname)
     /*
       * gibt die ID eines bestimmten Benutzers wieder.
@@ -416,31 +507,26 @@ function getEmail($verein)
     return $out;
 }
 
-function delBuchung($buchungsid, $usergroup)
+function delBuchung($buchungsid)
 {
     /*
-     * Löscht den übergebenen Datensatz bzw. merkt diesen zur Löschung vor. (Je nach Nutzergruppe)
+     * Löscht den übergebenen Datensatz.
      *
      * --NICHT FERTIG---
-     * Beträge müssen auch gebucht werden!
      */
     $database = connect();
-    if ($usergroup == 2) {
-        $sql = "UPDATE buchung SET zum_loeschen_vorgemerkt = '1' WHERE buchungsnummer=$buchungsid";
-        $database->query($sql);
-        $database->close();
-        return "Der Datensatz Nr: $buchungsid wurde erfolgreich zum Löschen vorgemerkt.";
-
-    } elseif ($usergroup == 1) {
+        $betrag = getIt('buchung', 'buchungsnummer', $buchungsid, 'betrag');
+        $userVon = getIt('buchung', 'buchungsnummer', $buchungsid, 'user_von');
+        $userZu = getIt('buchung', 'buchungsnummer', $buchungsid, 'user_zu');
         $copy = "INSERT INTO geloescht SELECT * FROM buchung WHERE zum_loeschen_vorgemerkt = 1;"; //vorgemerkte in geloescht kopieren.
         $database->query($copy);
-        $sql = "DELETE FROM buchung WHERE zum_loeschen_vorgemerkt = '1';"; //vorgemerkte in buchung löschen.
+        $zurueckVon="UPDATE user SET kontostand = kontostand + $betrag WHERE id= $userVon";
+        $zurueckZu="UPDATE user SET kontostand = kontostand - $betrag WHERE id= $userZu";
+        $database->query($zurueckVon);
+        $database->query($zurueckZu);
+        $sql = "DELETE FROM buchung WHERE buchungsnummer=$buchungsid;";
         $database->query($sql);
-        $database->close();
-        return "Der Datensatz Nr: $buchungsid wurde erfolgreich gelöscht.";
 
-    } else {
         $database->close();
-        return "Sie haben keine Berechtigung auf die Funktion zuzugreifen.";
-    }
+
 }

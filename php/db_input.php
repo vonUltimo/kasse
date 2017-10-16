@@ -14,12 +14,12 @@ function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
      *
      */
 {
-    $bnr = getEntrys("buchung") + 1;
+    $bnr = getLastBuchung()+1;
     $kontostandVon=getIt("user", "id",$von, "kontostand");
     $kontostandZu=getIt("user", "id",$zu, "kontostand");
     $database = connect();
-    $buchung= "INSERT INTO buchung (buchungsnummer, zwecknummer, datum, betrag, user_von, user_zu, log, anmerkung) 
-            VALUES ('$bnr', '$zweck', NOW(), '$betrag', '$von', '$zu', '$logid', '$anmerkung');";
+    $buchung= "INSERT INTO buchung (buchungsnummer, zwecknummer, datum, betrag, user_von, user_zu, log, anmerkung, zum_loeschen_vorgemerkt) 
+            VALUES ('$bnr', '$zweck', NOW(), '$betrag', '$von', '$zu', '$logid', '$anmerkung', '0');";
     $abgang= "UPDATE user SET kontostand = $kontostandVon-$betrag WHERE id=$von;";
     $zugang= "UPDATE user SET kontostand = $kontostandZu+$betrag WHERE id=$zu";
     $database->query($abgang);
@@ -29,31 +29,11 @@ function addBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
 
 }
 
-function correctBuchung($zweck, $betrag, $von, $zu, $logid, $anmerkung)
-    /*
-     * --NICHT FERTIG--
-     * @todo Buchung auf Nutzerkonten / vorher abziehen!
-     */
-{
-    $bnr = getEntrys("buchung");
-    $kontostandVon=getIt("user", "id",$von, "kontostand");
-    $kontostandZu=getIt("user", "id",$zu, "kontostand");
-    $alterBetrag=getIt("buchung", "buchungsnummer",$bnr, "betrag");
+function markToDelete($buchungsnummer){
     $database = connect();
-    //alte Buchung rückgängig machen
-    $revAbgang= "UPDATE user SET kontostand = $kontostandVon+$alterBetrag WHERE id=$von;";
-    $revZugang= "UPDATE user SET kontostand = $kontostandZu-$alterBetrag WHERE id=$zu";
-    $database->query($revAbgang);
-    $database->query($revZugang);
-    $buchung= "UPDATE buchung SET buchungsnummer = $bnr, zwecknummer = $zweck, datum = NOW(), betrag = $betrag, user_von = $von, user_zu = $zu, log = $logid, anmerkung = '$anmerkung';";
-    //neue Buchung auf Kontostand schreiben
-    $abgang= "UPDATE user SET kontostand = $kontostandVon-$betrag WHERE id=$von;";
-    $zugang= "UPDATE user SET kontostand = $kontostandZu+$betrag WHERE id=$zu";
-    $database->query($abgang);
-    $database->query($zugang);
-    $database->query($buchung);
+    $sql = "UPDATE buchung SET zum_loeschen_vorgemerkt =1 WHERE buchungsnummer=$buchungsnummer;";
+    $database->query($sql);
     $database->close();
-
 }
 
 function addVerwendungszweck($beschreibung)
@@ -123,26 +103,6 @@ function getUserUpdate($user){
             ;
         }
     $database->close();
-}
-
-function getCorrectBooking(){
-    /*
-     */
-    $database = connect();
-    $bnr=getEntrys('buchung');
-    $sql = "SELECT * FROM buchung WHERE buchungsnummer=$bnr;";
-    $result = $database->query($sql);
-    while ($row = $result->fetch_assoc()) {
-        echo
-            "<label for='zwecknummer'>Verwendungszweck</label>"."<select name='zwecknummer'>".getVerwendungszweckOptionS($row["zwecknummer"])."</select>\n".
-            "<label for='betrag'>Betrag</label><input name='betrag' type='text' value='" . $row["betrag"] . "'>\n".
-            "<label for='userFrom'>Abgehendes Konto</label><select name='userFrom'>".getUserOptionS($row["user_von"])."</select>\n".
-            "<label for='userTo'>Zugehendes Konto</label><select name='userTo'>".getUserOptionS($row["user_zu"])."</select>\n".
-            "<label for='comment'>Anmerkung</label><input name='comment' value='".$row["anmerkung"]."'>\n"
-        ;
-    }
-    $database->close();
-
 }
 
 function updateUser($id, $vorname, $nachname, $email, $zinsen, $hausbewohner, $passwort, $verein, $gruppe){
