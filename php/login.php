@@ -20,11 +20,13 @@ if ($verify == 1) {
     echo session_status();
     if($usergroup==1){
         echo "<meta http-equiv=\"refresh\" content=\"; URL=./admin.php\">";
-    }elseif ($usergroup==2){
+    }elseif ($usergroup==5){
         echo "<meta http-equiv=\"refresh\" content=\"; URL=./kw.php\">";
-    }elseif ($usergroup==3){
+    }elseif ($usergroup==10){
+        echo "<meta http-equiv=\"refresh\" content=\"; URL=./kw.php\">";
+    }elseif ($usergroup==15){
         echo "<meta http-equiv=\"refresh\" content=\"; URL=./am.php\">";
-    }elseif ($usergroup==4){
+    }elseif ($usergroup==20){
         echo "<meta http-equiv=\"refresh\" content=\"; URL=./pm.php\">";
     }else{
         echo "<meta http-equiv=\"refresh\" content=\"; URL=./guest.php\">";

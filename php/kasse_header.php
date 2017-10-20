@@ -19,12 +19,12 @@ function kasse_header()
         if ($_SESSION['usergroup'] < 5) {echo "<a href=\"get_konto.php\">Kontostand anzeigen</a>";}
         echo "</div>
             </div>";}
-    if ($_SESSION['usergroup'] < 3) {echo "
+    if ($_SESSION['usergroup'] < 6) {echo "
             <div class=\"dropdown\">
                 <button class=\"button-primary\">Eingaben</button>
                 <div class=\"dropdown-content\">";
-        if ($_SESSION['usergroup'] < 3) {echo "<a href=\"add_booking.php\">Buchung anlegen</a>";}
-        if ($_SESSION['usergroup'] < 3) {echo "<a href=\"correctBooking.php\">letzte Buchung korrigieren unfertig</a>";}
+        if ($_SESSION['usergroup'] < 6 ) {echo "<a href=\"add_booking.php\">Buchung anlegen</a>";}
+        if ($_SESSION['usergroup'] < 6 ) {echo "<a href=\"delBooking.php\">Buchung löschen</a>";}
         echo"</div>
             </div> ";}
     if ($_SESSION['usergroup'] < 3) {echo "

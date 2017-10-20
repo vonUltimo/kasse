@@ -25,7 +25,7 @@ if ($_SESSION["usergroup"] < 3) {
     ?>
     <div class="container">
         <?php
-        if ($_SESSION["usergroup"] = 1) {
+        if ($_SESSION["usergroup"] == 1) {
             getBuchungDel();
             foreach ($_POST as $value){
                 delBuchung($value);

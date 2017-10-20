@@ -49,7 +49,7 @@ function getUserTable()
                 "<td>" . $row["vorname"] . "</td>" .
                 "<td>" . $row["nachname"] . "</td>" .
                 "<td>" . $row["email"] . "</td>" .
-                "<td>" . $row["kontostand"] . " €" . "</td>" .
+                "<td>" . $row["kontostand"] . "&nbsp€" . "</td>" .
                 "<td>" . boolZuText($row["zinsen"]) . "</td>" .
                 "<td>" . boolZuText($row["hausbewohner"]) . "</td>" .
                 "</tr>";
@@ -344,7 +344,7 @@ function getBuchungDel()
                 "<td>" . boolZuText($row["zum_loeschen_vorgemerkt"]) . "</td>" .
                 "<td>" . getUser($row["user_von"]) . "</td>" .
                 "<td>" . getUser($row["user_zu"]) . "</td>" .
-                "<td>" . $row["betrag"] . " €" . "</td>" .
+                "<td>" . $row["betrag"] . "&nbsp€" . "</td>" .
                 "<td>" . $row["datum"] . "</td>" .
                 "<td>" . getVerwendungszweck($row["zwecknummer"]) . "</td>" .
                 "<td>" . $row["anmerkung"] . "</td>" .
