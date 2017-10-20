@@ -5,7 +5,7 @@
  * Version: 0.1
  */
 session_start();
-if ($_SESSION["usergroup"] < 5) {
+if ($_SESSION["usergroup"] < 16) {
 
     require_once "db_request.php";
     require_once "kasse_header.php";

@@ -321,7 +321,7 @@ function getBuchungDel()
      * --NICHT FERTIG--
      */
 {
-    $sql = "SELECT * FROM buchung ORDER BY zum_loeschen_vorgemerkt DESC LIMIT 20;";
+    $sql = "SELECT * FROM buchung ORDER BY zum_loeschen_vorgemerkt DESC LIMIT 10;";
     $database = connect();
     $result = $database->query($sql);
     echo "
