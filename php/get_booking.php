@@ -28,11 +28,9 @@ if ($_SESSION["usergroup"] < 16) {
                 <label for="quantity">Anzahl</label> <input name="quantity" value="5" type="number" min="1">
                 <label for="useroption">Nutzer</label><select name="useroption"><?php getUserOption() ?></select>
                 <label for="direction">Richtung</label>
-                <select name="direction">
-                    <option value="0">abgehende Buchungen</option>
-                    <option value="1">eingehende Buchungen</option>
-                    <option value="2">alle Buchungen</option>
-                </select>
+                <input type="radio" name="direction" value="0"> abgehende Buchungen
+                <input type="radio" name="direction" value="1"> eingehende Buchungen
+                <input type="radio" name="direction" value="2"> alle Buchungen
                 <input class="button-primary" type="submit">
             </form>
             <?php

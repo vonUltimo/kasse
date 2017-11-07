@@ -35,11 +35,8 @@ if ($_SESSION["usergroup"] < 3) {
                 <label for="vereinoption">Verein</label> <?php getVereinSelectOption(); ?>
                 <label for="usergroupOption">Nutzergruppe</label> <?php getUserGroupOption(); ?>
                 <label for="hausbewohner">Hausbewohner</label>
-                <select name="hausbewohner">
-                    <option value="0">Nein</option>
-                    <option value="1">Ja</option>
-                </select>
-                <input class="button-primary" type="submit">
+                <input type="radio" name="hausbewohner" value="1"> ja
+                <input type="radio" name="hausbewohner" value="0"> nein
             </form>
             <?php
         } else {
