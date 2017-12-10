@@ -24,7 +24,7 @@ function kasse_header()
                 <button class=\"button-primary\">Eingaben</button>
                 <div class=\"dropdown-content\">";
         if ($_SESSION['usergroup'] < 6 ) {echo "<a href=\"add_booking.php\">Buchung anlegen</a>";}
-        if ($_SESSION['usergroup'] < 6 ) {echo "<a href=\"#\">Mehrfachbuchungen</a>";}
+        if ($_SESSION['usergroup'] < 6 ) {echo "<a href=\"add_booking_zinsen.php\">Zinsen buchen</a>";}
         if ($_SESSION['usergroup'] < 6 ) {echo "<a href=\"delBooking.php\">Buchung löschen</a>";}
         echo"</div>
             </div> ";}

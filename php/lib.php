@@ -1,10 +1,14 @@
 <?php
-/**
- * Hier kommen alle allegemeingültigen Funktionen rein.
- * @author Sven Haberzettl <von.ultimo@gmail.com>
- * @author Jan Nemeth <jan.nemeth@web.de>
- * @license http://www.opensource.org/licenses/mit-license.html MIT License
- * */
+
+function getZinsen($hausbewohner){
+    // Gibt die Zinsen entsprechend der uebergebenen Variable zurueck.
+    if ($hausbewohner==0)
+        return 0.15;
+    elseif ($hausbewohner==1)
+        return 0.05;
+    else
+        return "Kein gueltiger Wert";
+}
 
 function connect()
 {

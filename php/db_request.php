@@ -371,6 +371,23 @@ function getVerwendungszweck($zwecknummer)
     return $out;
 }
 
+function getUserWithoutZinsbefreit(){
+    /*
+     * Gibt alle nicht zinsbefreiten Nutzer mit Schulden alls Array mit id ==> hausbewohner zurueck.
+     */
+    $database = connect();
+    $sql = "SELECT * FROM user WHERE kontostand <'0' AND zinsen='0'";
+    $result = $database->query($sql);
+
+    $array = array();
+    if ($result instanceof mysqli_result) {
+        while ($row = $result->fetch_object()) {
+            $array[$row->id] = $row->hausbewohner;
+        }
+    }
+    return $array;
+}
+
 function getKontostand($user)
     /*
       * gibt den Kontostand des Nutzers mit der übergebenen id zurück.
