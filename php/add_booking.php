@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * @author Ultimo <von.ultimo@gmail.com>
+ * Version: 0.11
+ */
+
 session_start();
 if ($_SESSION["usergroup"] < 3) {
 

@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ultimo
- * Date: 15.08.17
- * Time: 09:23
+ * @author Ultimo <von.ultimo@gmail.com>
+ * Version: 0.11
  */
 session_start();
 session_destroy();

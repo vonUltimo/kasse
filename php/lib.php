@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Ultimo <von.ultimo@gmail.com>
+ * Version: 0.11
+ */
+
 function getZinsen($hausbewohner){
     // Gibt die Zinsen entsprechend der uebergebenen Variable zurueck.
     if ($hausbewohner==0)

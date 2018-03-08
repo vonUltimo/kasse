@@ -1,9 +1,8 @@
 <?php
 /**
- * @author Sven Haberzettl <von.ultimo@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.html MIT License
- * @version 0.3 (18-08-2017)
- * */
+ * @author Ultimo <von.ultimo@gmail.com>
+ * Version: 0.11
+ */
 session_start();
 require_once "db_request.php";
 

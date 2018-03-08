@@ -1,7 +1,6 @@
 <?php
 /**
- * @author Sven Haberzettl <von.ultimo@gmail.com>
- * @author Jan Nemeth <jpnemeth3012@gmail.com>
+ * @author von Ultimo <von.ultimo@gmail.com>
  * Version: 0.1
  */
 function kasse_header()

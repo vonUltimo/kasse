@@ -1,10 +1,8 @@
 <?php
 /**
- * Hier werden sämtlichen Datenbankabfragen geschrieben.
- * @author Sven Haberzettl <von.ultimo@gmail.com>
- * @author Jan Nemeth <jan.nemeth@web.de>
- * @license http://www.opensource.org/licenses/mit-license.html MIT License
- * */
+ * @author Ultimo <von.ultimo@gmail.com>
+ * Version: 0.11
+ */
 
 include_once "lib.php";
 
