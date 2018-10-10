@@ -18,7 +18,7 @@ session_destroy();
 <body>
 <div class="container">
     <div class="row">
-        <h4>Du hast dich erfolgreich abgemeldet.</h4>
+        <h4>Du hast dich erfolgreich abgemeldet, klasse!</h4>
         <meta http-equiv="refresh" content="3; URL=..//index.php"/>
     </div>
 </div>
